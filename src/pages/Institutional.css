@@ -1,0 +1,113 @@
+/* Institutional.css - Editorial */
+
+.institutional-page {
+    /* bg paper is default body */
+}
+
+/* KP = Key Page (Editorial) */
+.kp-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-paper);
+    margin-bottom: 4rem;
+}
+
+.kp-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 14, 14, 0.4);
+}
+
+.kp-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 4rem;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.kp-content {
+    max-width: 900px;
+    /* Narrower reading column */
+    margin-bottom: 6rem;
+}
+
+.manifesto-highlight {
+    text-align: center;
+    border-top: 1px solid var(--color-ink);
+    border-bottom: 1px solid var(--color-ink);
+    padding: 3rem 1rem;
+    margin-bottom: 4rem;
+}
+
+.manifesto-highlight h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.manifesto-highlight p {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.kp-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+.kp-text-block p {
+    margin-bottom: 0;
+}
+
+/* Contact Specific */
+.contact-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem 6rem;
+}
+
+.contact-text {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    border-color: #25D366;
+    color: white;
+    font-size: 1rem;
+    border-radius: 4px;
+    /* WhatsApp exception */
+    margin-bottom: 1rem;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .kp-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .manifesto-highlight h2 {
+        font-size: 1.5rem;
+    }
+}

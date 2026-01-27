@@ -1,0 +1,245 @@
+/* Home.css - Editorial Redesign */
+
+/* 1. HERO Editorial */
+.hero-editorial {
+    position: relative;
+    height: 85vh;
+    /* Large impactful hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/assets/hero-bg.png');
+    /* Needs a raw texture or street photo */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax feel */
+    color: var(--color-paper);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(14, 14, 14, 0.4);
+    /* Contrast overlay */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-badge {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.8rem;
+    border: 1px solid var(--color-paper);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: 5rem;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+/* 2. MANIFESTO */
+.manifesto-block {
+    padding: 2rem 0 6rem;
+    text-align: center;
+}
+
+.manifesto-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.manifesto-text p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: var(--color-text-secondary);
+}
+
+.manifesto-icon {
+    width: 40px;
+    height: auto;
+    opacity: 0.8;
+}
+
+/* 3. CATEGORIES - Editorial Grid */
+.categories-editorial {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5rem;
+    height: 600px;
+    margin-bottom: 6rem;
+}
+
+.cat-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    padding: 2.5rem;
+    color: white;
+    /* Text always white on images */
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.cat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    transition: opacity 0.3s;
+}
+
+.cat-card:hover::before {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.cat-content {
+    position: relative;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.cat-card:hover .cat-content {
+    transform: translateY(-5px);
+}
+
+.cat-content h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.cat-content p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    max-width: 300px;
+}
+
+.btn-text {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+}
+
+.cat-column {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.cat-card.text-only {
+    background-color: var(--color-ink);
+    /* Black block */
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cat-card.text-only .cat-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-link {
+    color: white;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
+
+/* 4. FEATURED */
+.featured-section {
+    margin-bottom: 6rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+}
+
+.link-arrow {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* 5. FOOTER CTA */
+.footer-cta-editorial {
+    background-color: var(--color-cement);
+    padding: 6rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-cta-editorial h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--color-ink);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .categories-editorial {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .cat-column {
+        height: 500px;
+    }
+
+    .cat-card.big {
+        height: 400px;
+    }
+}
