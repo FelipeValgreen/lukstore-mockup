@@ -148,3 +148,13 @@ export const PRODUCTS = [
 export const getActiveDrops = () => {
     return PRODUCTS.filter(p => p.isDrop);
 };
+
+export const getFeaturedProducts = () => PRODUCTS.filter(p => p.condition === 'new');
+export const getUsedProducts = () => PRODUCTS.filter(p => p.condition === 'used');
+
+export const getProductsByCategory = (cat) => {
+    if (cat === 'drops') return getActiveDrops();
+    return PRODUCTS.filter(p => p.category.toLowerCase().includes(cat.toLowerCase()) || p.title.toLowerCase().includes(cat.toLowerCase()));
+};
+
+export const getProductById = (id) => PRODUCTS.find(p => p.id === id);
