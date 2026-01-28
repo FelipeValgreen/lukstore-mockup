@@ -1,113 +1,171 @@
-/* Institutional.css - Editorial */
+/* Institutional.css - For text heavy pages (About, Support, etc.) */
 
 .institutional-page {
-    /* bg paper is default body */
+    /* Base styles */
 }
 
-/* KP = Key Page (Editorial) */
+/* Heroes for subpages */
 .kp-hero {
-    position: relative;
     height: 50vh;
-    min-height: 400px;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-paper);
     margin-bottom: 4rem;
 }
 
 .kp-overlay {
     position: absolute;
-    inset: 0;
-    background: rgba(14, 14, 14, 0.4);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .kp-hero h1 {
     position: relative;
     z-index: 2;
+    color: white;
     font-size: 4rem;
+    text-transform: uppercase;
     letter-spacing: -0.02em;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .kp-content {
-    max-width: 900px;
-    /* Narrower reading column */
-    margin-bottom: 6rem;
+    max-width: 900px !important;
+    /* Editorial narrow reading width */
 }
 
 .manifesto-highlight {
     text-align: center;
-    border-top: 1px solid var(--color-ink);
-    border-bottom: 1px solid var(--color-ink);
-    padding: 3rem 1rem;
     margin-bottom: 4rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 3rem;
 }
 
 .manifesto-highlight h2 {
-    font-size: 1.75rem;
+    font-size: 2rem;
+    line-height: 1.2;
     margin-bottom: 1.5rem;
-    line-height: 1.3;
-}
-
-.manifesto-highlight p {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-}
-
-.kp-text-block {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #444;
 }
 
 .kp-text-block p {
-    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.5rem;
 }
 
-/* Contact Specific */
-.contact-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem 1rem 6rem;
-}
-
-.contact-text {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-}
-
-.btn-whatsapp {
-    background-color: #25D366;
-    border-color: #25D366;
-    color: white;
-    font-size: 1rem;
-    border-radius: 4px;
-    /* WhatsApp exception */
+.kp-text-block h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
-.btn-whatsapp:hover {
-    background-color: #128C7E;
-    color: white;
+/* 2 Column Layout for About */
+.kp-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
+    .kp-grid-2col {
+        grid-template-columns: 1fr;
+    }
+
     .kp-hero h1 {
         font-size: 2.5rem;
     }
+}
 
-    .manifesto-highlight h2 {
-        font-size: 1.5rem;
+/* Values Grid */
+.kp-values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid #000;
+    padding-top: 3rem;
+}
+
+.value-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.value-item p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .kp-values-grid {
+        grid-template-columns: 1fr;
     }
+}
+
+/* Contact Specific */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-intro {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.contact-details p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.contact-details {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+}
+
+/* Editorial Forms */
+.editorial-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.editorial-form label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.editorial-form input,
+.editorial-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-family: inherit;
+    border-radius: 0;
+}
+
+.editorial-form input:focus,
+.editorial-form textarea:focus {
+    border-color: #000;
+    background: #fff;
 }

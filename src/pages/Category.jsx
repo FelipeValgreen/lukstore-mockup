@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
-import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { usePageMeta } from '../hooks/usePageMeta';
+import SEOBlock from '../components/SEOBlock';
 import './Category.css';
 
 import { getProductsByCategory } from '../data/products';
@@ -10,17 +11,20 @@ const CATEGORY_META = {
     basketball: {
         title: "Basketball Heritage",
         description: "Modelos con origen, silueta y uso real. Zapatillas que definieron la cultura y el juego.",
-        image: "/assets/cat-basketball.png"
+        image: "/assets/cat-basketball.png",
+        seoText: "Nuestra colección de Basketball Heritage no es solo nostalgia. Es rendimiento y estilo que trasciende la cancha. Encuentra desde Jordan Retro clásicas hasta las últimas firmas de atletas que están cambiando el juego hoy."
     },
     streetwear: {
         title: "Streetwear Selected",
         description: "Streetwear funcional. Corte, material y actitud. Piezas seleccionadas para el día a día.",
-        image: "/assets/cat-streetwear.png"
+        image: "/assets/cat-streetwear.png",
+        seoText: "El streetwear es más que logotipos. Es sobre la calidad del algodón, el corte oversized perfecto y la durabilidad de las prendas. En Lukstore seleccionamos hoodies, poleras y pantalones que resisten el uso diario con estilo."
     },
     drops: {
         title: "Limited Drops",
         description: "Lanzamientos especiales. Cuando se acaban, no vuelven. Sin hype falso.",
-        image: "/assets/cat-drops.png"
+        image: "/assets/cat-drops.png",
+        seoText: "Acceso exclusivo a los pares más codiciados de la temporada. Nuestra sección de Limited Drops se actualiza semanalmente con stock muy limitado. Recomendamos activar notificaciones y estar atento a nuestro Instagram."
     }
 };
 
@@ -33,25 +37,17 @@ const Category = ({ type }) => {
     React.useEffect(() => {
         let result = getProductsByCategory(type);
 
-        // Filter by Size (Mock logic as data doesn't have explicit sizes per product in this mock, assuming all have all sizes for demo, or we can random filter)
-        // For this mock, we'll just log it or maybe randomize
-        if (filters.size !== 'all') {
-            // Mock: Filter out some products randomly to simulate size availability
-            // In a real app: result = result.filter(p => p.sizes.includes(filters.size));
-        }
-
         // Sort
         if (filters.sort === 'price-asc') {
             result.sort((a, b) => parseInt(a.price.replace(/\./g, '')) - parseInt(b.price.replace(/\./g, '')));
         } else if (filters.sort === 'price-desc') {
             result.sort((a, b) => parseInt(b.price.replace(/\./g, '')) - parseInt(a.price.replace(/\./g, '')));
         }
-        // 'newest' is default order in data
 
         setProducts([...result]);
     }, [type, filters]);
 
-    useDocumentTitle(meta ? meta.title : 'Categoría');
+    usePageMeta(meta ? meta.title : 'Categoría', meta ? meta.description : '');
 
     if (!meta) return <div>Category not found</div>;
 
@@ -103,9 +99,12 @@ const Category = ({ type }) => {
                     <div className="grid product-grid">
                         {products.map(p => <ProductCard key={p.id} {...p} />)}
                     </div>
-                    {products.length === 0 && <p>No hay productos que coincidan con los filtros.</p>}
+                    {products.length === 0 && <p style={{ padding: '2rem', color: '#666' }}>No hay productos disponibles en esta categoría por el momento.</p>}
                 </div>
             </section>
+
+            {/* SGEO Text Block */}
+            <SEOBlock title={`Sobre ${meta.title}`} content={meta.seoText} />
         </div>
     );
 };

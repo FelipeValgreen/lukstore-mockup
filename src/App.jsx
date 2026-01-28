@@ -1,60 +1,66 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Category from './pages/Category';
-import Product from './pages/Product';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Cart from './pages/Cart';
-import Search from './pages/Search';
-import Checkout from './pages/Checkout';
-import Success from './pages/Success';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 
-// Scroll to top on route change
-const ScrollToTopHelper = () => {
-    const { pathname } = useLocation();
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-    return null;
-};
+// Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+
+// Pages
+import Home from './pages/Home';
+import Product from './pages/Product';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Success from './pages/Success';
+import Search from './pages/Search';
+import Category from './pages/Category';
+
+// Institutional Pages
+import About from './pages/About';
+import Contact from './pages/Contact';
+
+// Support Pages
+import SizeGuide from './pages/Support/SizeGuide';
+import Shipping from './pages/Support/Shipping';
+import Authenticity from './pages/Support/Authenticity';
+import Legal from './pages/Support/Legal';
 
 function App() {
     return (
         <CartProvider>
-            <Router>
-                <ScrollToTopHelper />
-                <div className="app">
-                    <Header />
-                    <main>
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/zapatillas" element={<Category key="zapatillas" category="Zapatillas" />} />
-                            <Route path="/hombre" element={<Category key="hombre" category="Hombre" />} />
-                            <Route path="/mujer" element={<Category key="mujer" category="Mujer" />} />
-                            <Route path="/accesorios" element={<Category key="accesorios" category="Accesorios" />} />
-                            <Route path="/drops" element={<Category key="drops" category="Drops" />} />
-                            <Route path="/nosotros" element={<About />} />
-                            <Route path="/contacto" element={<Contact />} />
-                            <Route path="/product/:id" element={<Product />} />
-                            <Route path="/cart" element={<Cart />} />
-                            <Route path="/search" element={<Search />} />
-                            <Route path="/checkout" element={<Checkout />} />
-                            <Route path="/success" element={<Success />} />
-                            <Route path="/guia-tallas" element={<div className="container" style={{ padding: '100px 0' }}><h2>Guía de Tallas</h2><p>Tabla de medidas detallada.</p></div>} />
-                            <Route path="/envios" element={<div className="container" style={{ padding: '100px 0' }}><h2>Envíos y Devoluciones</h2><p>Información sobre despachos y políticas de cambio.</p></div>} />
-                            <Route path="/autenticidad" element={<div className="container" style={{ padding: '100px 0' }}><h2>Autenticidad</h2><p>Nuestro proceso de verificación y garantía.</p></div>} />
-                            <Route path="/terminos" element={<div className="container" style={{ padding: '100px 0' }}><h2>Términos y Condiciones</h2></div>} />
-                            <Route path="/privacidad" element={<div className="container" style={{ padding: '100px 0' }}><h2>Política de Privacidad</h2></div>} />
-                        </Routes>
-                    </main>
-                    <Footer />
-                </div>
-            </Router>
+            <div className="app">
+                <Header />
+                <ScrollToTop />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/product/:id" element={<Product />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/zapatillas" element={<Category type="basketball" />} />
+                        <Route path="/streetwear" element={<Category type="streetwear" />} />
+                        <Route path="/drops" element={<Category type="drops" />} />
+                        {/* Aliases for better navigation feel */}
+                        <Route path="/hombre" element={<Category type="streetwear" />} />
+                        <Route path="/mujer" element={<Category type="streetwear" />} />
+                        <Route path="/accesorios" element={<Category type="drops" />} />
+
+                        <Route path="/nosotros" element={<About />} />
+                        <Route path="/contacto" element={<Contact />} />
+
+                        <Route path="/search" element={<Search />} />
+                        <Route path="/checkout" element={<Checkout />} />
+                        <Route path="/success" element={<Success />} />
+
+                        <Route path="/guia-tallas" element={<SizeGuide />} />
+                        <Route path="/envios" element={<Shipping />} />
+                        <Route path="/autenticidad" element={<Authenticity />} />
+                        <Route path="/terminos" element={<Legal />} />
+                        <Route path="/privacidad" element={<Legal />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
         </CartProvider>
     );
 }
