@@ -10,6 +10,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import Search from './pages/Search';
+import Checkout from './pages/Checkout';
+import Success from './pages/Success';
 import { CartProvider } from './context/CartContext';
 
 // Scroll to top on route change
