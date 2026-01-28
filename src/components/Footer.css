@@ -81,7 +81,7 @@
     gap: 0.5rem;
 }
 
-.socials-list a {
+.socials-list a.social-link {
     color: #fff;
     text-transform: uppercase;
     font-size: 0.9rem;
@@ -89,6 +89,9 @@
     opacity: 0.7;
     text-decoration: none;
     transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .socials-list a:hover {

@@ -34,8 +34,8 @@
 }
 
 .logo-img {
-    height: 32px;
-    /* Reserved style: contained, smaller */
+    height: 48px;
+    /* Increased for visibility */
     width: auto;
     object-fit: contain;
     transition: transform 0.2s ease;
@@ -43,8 +43,8 @@
 
 @media (max-width: 900px) {
     .logo-img {
-        height: 26px;
-        /* Mobile size */
+        height: 32px;
+        /* Mobile size increased */
     }
 }
 

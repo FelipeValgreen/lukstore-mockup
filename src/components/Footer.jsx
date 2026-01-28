@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram } from 'lucide-react';
+import { Instagram, MessageCircle, Music2 } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -28,9 +28,15 @@ const Footer = () => {
                 {/* Col 3: Socials */}
                 <div className="footer-col social-col">
                     <div className="socials-list">
-                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
+                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <MessageCircle size={18} /> <span>WHATSAPP</span>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <Instagram size={18} /> <span>INSTAGRAM</span>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <Music2 size={18} /> <span>TIKTOK</span>
+                        </a>
                     </div>
                 </div>
             </div>
