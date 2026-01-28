@@ -22,8 +22,7 @@ const Home = () => {
                         SELECTED<br />STREET<br />GOODS
                     </h1>
                     <p className="hero-subtitle">
-                        Zapatillas, ropa y accesorios urbanos seleccionados uno a uno.<br />
-                        Sin hype falso. Sin promesas vacías.
+                        Zapatillas, ropa y accesorios urbanos seleccionados uno a uno.
                     </p>
                     <div className="hero-actions">
                         <Link to="/zapatillas" className="btn btn-primary">Ver Zapatillas</Link>
@@ -32,10 +31,12 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* 1b. PROMO BANNER: SUMMER SALE */}
+            {/* 1b. PROMO BANNER: SUMMER SALE - Editorial Poster Style */}
             <div className="container" style={{ marginBottom: '4rem' }}>
-                <Link to="/zapatillas">
-                    <img src="/assets/banner-sale.png" alt="Summer Sale" style={{ width: '100%', display: 'block' }} />
+                <Link to="/zapatillas" className="banner-sale-poster">
+                    <h2>SUMMER SALE</h2>
+                    <p>Selección de temporada con descuentos limitados.</p>
+                    <span className="btn-sale">Ver ofertas</span>
                 </Link>
             </div>
 
@@ -87,16 +88,34 @@ const Home = () => {
             <section className="categories-section container">
                 <div className="grid-categories">
                     <Link to="/zapatillas" className="cat-tile" style={{ backgroundImage: 'url(/assets/cat-basketball.png)' }}>
-                        <h3>Zapatillas</h3>
+                        <div className="cat-tile-content">
+                            <h3>Zapatillas</h3>
+                            <p>Curaduría de sneakers urbanos y de alto rendimiento.</p>
+                        </div>
                     </Link>
                     <Link to="/hombre" className="cat-tile" style={{ backgroundImage: 'url(/assets/cat-streetwear.png)' }}>
-                        <h3>Hombre</h3>
+                        <div className="cat-tile-content">
+                            <h3>Hombre</h3>
+                            <p>Ropa urbana pensada para el día a día.</p>
+                        </div>
                     </Link>
                     <Link to="/mujer" className="cat-tile" style={{ backgroundImage: 'url(/assets/hero-bg.png)' }}>
-                        <h3>Mujer</h3>
+                        <div className="cat-tile-content">
+                            <h3>Mujer</h3>
+                            <p>Streetwear funcional con carácter.</p>
+                        </div>
                     </Link>
                     <Link to="/accesorios" className="cat-tile" style={{ backgroundColor: '#1a1a1a' }}>
-                        <h3>Accesorios</h3>
+                        <div className="cat-tile-content">
+                            <h3>Accesorios</h3>
+                            <p>Detalles que completan el fit.</p>
+                        </div>
+                    </Link>
+                    <Link to="/drops" className="cat-tile" style={{ backgroundImage: 'url(/assets/banner-drops.png)' }}>
+                        <div className="cat-tile-content">
+                            <h3>Drops</h3>
+                            <p>Lanzamientos y selecciones limitadas.</p>
+                        </div>
                     </Link>
                 </div>
             </section>

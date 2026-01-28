@@ -9,14 +9,28 @@
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
     margin-bottom: 4rem;
 }
 
 .footer-col h4 {
-    display: none;
-    /* Minimal - hide headers, just links */
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+}
+
+.footer-brand-name {
+    color: white;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    line-height: 1;
 }
 
 .brand-col {
@@ -60,19 +74,32 @@
     text-decoration: underline;
 }
 
-.social-col {
+.socials-list {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
 }
 
-.socials a {
+.socials-list a {
     color: #fff;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
     opacity: 0.7;
+    text-decoration: none;
     transition: opacity 0.2s;
 }
 
-.socials a:hover {
+.socials-list a:hover {
     opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .socials-list {
+        align-items: center;
+    }
 }
 
 .footer-bottom {

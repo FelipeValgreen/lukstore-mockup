@@ -87,7 +87,7 @@ const Product = () => {
                             <span className="icon">🛡️</span>
                             <div className="text">
                                 <strong>Autenticidad Garantizada</strong>
-                                <p>Cada par es inspeccionado por especialistas antes de ser enviado.</p>
+                                <p>Todos nuestros productos son revisados y seleccionados antes de ser publicados. La información entregada busca ayudarte a tomar una decisión informada.</p>
                             </div>
                         </div>
                         <div className="service-item">

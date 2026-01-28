@@ -45,8 +45,11 @@ function App() {
                             <Route path="/search" element={<Search />} />
                             <Route path="/checkout" element={<Checkout />} />
                             <Route path="/success" element={<Success />} />
-                            <Route path="/terminos" element={<div className="container" style={{ padding: '100px 0' }}>Términos y Condiciones (Placeholder)</div>} />
-                            <Route path="/privacidad" element={<div className="container" style={{ padding: '100px 0' }}>Política de Privacidad (Placeholder)</div>} />
+                            <Route path="/guia-tallas" element={<div className="container" style={{ padding: '100px 0' }}><h2>Guía de Tallas</h2><p>Tabla de medidas detallada.</p></div>} />
+                            <Route path="/envios" element={<div className="container" style={{ padding: '100px 0' }}><h2>Envíos y Devoluciones</h2><p>Información sobre despachos y políticas de cambio.</p></div>} />
+                            <Route path="/autenticidad" element={<div className="container" style={{ padding: '100px 0' }}><h2>Autenticidad</h2><p>Nuestro proceso de verificación y garantía.</p></div>} />
+                            <Route path="/terminos" element={<div className="container" style={{ padding: '100px 0' }}><h2>Términos y Condiciones</h2></div>} />
+                            <Route path="/privacidad" element={<div className="container" style={{ padding: '100px 0' }}><h2>Política de Privacidad</h2></div>} />
                         </Routes>
                     </main>
                     <Footer />
