@@ -17,7 +17,7 @@ const Home = () => {
             <section className="hero-editorial">
                 <div className="hero-overlay"></div>
                 <div className="container hero-content">
-                    <span className="hero-badge">Since 2024 — SCL</span>
+                    {/* Removed Since 2024 */}
                     <h1 className="hero-title">
                         SELECTED<br />STREET<br />GOODS
                     </h1>
@@ -25,13 +25,16 @@ const Home = () => {
                         Zapatillas, ropa y accesorios urbanos seleccionados uno a uno.<br />
                         Sin hype falso. Sin promesas vacías.
                     </p>
-                    <Link to="/streetwear" className="btn btn-primary">Ver Selección</Link>
+                    <div className="hero-actions">
+                        <Link to="/zapatillas" className="btn btn-primary">Ver Zapatillas</Link>
+                        <Link to="/drops" className="btn btn-secondary-outline">Ver Drops</Link>
+                    </div>
                 </div>
             </section>
 
             {/* 1b. PROMO BANNER: SUMMER SALE */}
             <div className="container" style={{ marginBottom: '4rem' }}>
-                <Link to="/streetwear">
+                <Link to="/zapatillas">
                     <img src="/assets/banner-sale.png" alt="Summer Sale" style={{ width: '100%', display: 'block' }} />
                 </Link>
             </div>
@@ -41,8 +44,8 @@ const Home = () => {
                 <div className="container">
                     <div className="manifesto-text">
                         <h2>Lukstore no es un retail.</h2>
-                        <p>Es una selección curada de street goods co historia, carácter y uso real.</p>
-                        <img src="/assets/logo-isotype.png" alt="Clover" className="manifesto-icon" />
+                        <p>Es una selección curada de street goods con historia, carácter y uso real.</p>
+                        <img src="/assets/logo-badge.png" alt="Clover" className="manifesto-icon" />
                     </div>
                 </div>
             </section>
@@ -51,54 +54,50 @@ const Home = () => {
             <section className="featured-section container">
                 <div className="section-header">
                     <h2>Nuevos Ingresos</h2>
-                    <Link to="/streetwear" className="link-arrow">Ver todo</Link>
+                    <Link to="/zapatillas" className="link-arrow">Ver todo</Link>
                 </div>
                 <div className="grid product-grid">
                     {featured.map(p => <ProductCard key={p.id} {...p} />)}
                 </div>
             </section>
 
-            {/* 3b. PROMO BANNER: DROPS */}
-            <div className="container" style={{ marginBottom: '6rem' }}>
-                <Link to="/drops">
-                    <img src="/assets/banner-drops.png" alt="Exclusive Drops" style={{ width: '100%', display: 'block' }} />
+            {/* 3b. PROMO BANNER: DROPS - Editorial Style */}
+            <div className="container" style={{ marginBottom: '5rem', marginTop: '2rem' }}>
+                <Link to="/drops" className="banner-editorial">
+                    <div className="banner-content">
+                        <span className="banner-label">Limited Edition</span>
+                        <h2>DROP DE LA SEMANA</h2>
+                        <span className="btn-text">Comprar Ahora</span>
+                    </div>
                 </Link>
             </div>
 
             {/* 4. PRE-LOVED (Usados) */}
             <section className="featured-section container">
                 <div className="section-header">
-                    <h2>Streetwear Pre-Loved (Used)</h2>
-                    <Link to="/streetwear" className="link-arrow">Ver colección</Link>
+                    <h2>Pre-Loved Select</h2>
+                    <Link to="/zapatillas" className="link-arrow">Ver colección</Link>
                 </div>
                 <div className="grid product-grid">
                     {used.map(p => <ProductCard key={p.id} {...p} />)}
                 </div>
             </section>
 
-            {/* 5. CATEGORIES GRID */}
-            <section className="categories-editorial container">
-                {/* Reuse existing cat-card logic */}
-                <Link to="/basketball" className="cat-card big" style={{ backgroundImage: 'url(/assets/cat-basketball.png)' }}>
-                    <div className="cat-content">
-                        <h3>Basketball</h3>
-                        <p>Legacy on court.</p>
-                        <span className="btn-text">Explorar</span>
-                    </div>
-                </Link>
-                <div className="cat-column">
-                    <div className="cat-card small" style={{ backgroundImage: 'url(/assets/cat-streetwear.png)', backgroundColor: '#333' }}>
-                        <div className="cat-content">
-                            <h3>Ropa</h3>
-                            <span className="btn-text">Ver Ropa</span>
-                        </div>
-                    </div>
-                    <div className="cat-card small text-only">
-                        <div className="cat-content">
-                            <h3>Accesorios</h3>
-                            <Link to="/streetwear" className="btn-link">Ver Todo</Link>
-                        </div>
-                    </div>
+            {/* 5. CATEGORIES GRID - Clean 4-col */}
+            <section className="categories-section container">
+                <div className="grid-categories">
+                    <Link to="/zapatillas" className="cat-tile" style={{ backgroundImage: 'url(/assets/cat-basketball.png)' }}>
+                        <h3>Zapatillas</h3>
+                    </Link>
+                    <Link to="/hombre" className="cat-tile" style={{ backgroundImage: 'url(/assets/cat-streetwear.png)' }}>
+                        <h3>Hombre</h3>
+                    </Link>
+                    <Link to="/mujer" className="cat-tile" style={{ backgroundImage: 'url(/assets/hero-bg.png)' }}>
+                        <h3>Mujer</h3>
+                    </Link>
+                    <Link to="/accesorios" className="cat-tile" style={{ backgroundColor: '#1a1a1a' }}>
+                        <h3>Accesorios</h3>
+                    </Link>
                 </div>
             </section>
 

@@ -31,15 +31,18 @@ function App() {
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/basketball" element={<Category type="basketball" />} />
-                            <Route path="/streetwear" element={<Category type="streetwear" />} />
-                            <Route path="/drops" element={<Category type="drops" />} />
+                            <Route path="/zapatillas" element={<Category key="zapatillas" category="Zapatillas" />} />
+                            <Route path="/hombre" element={<Category key="hombre" category="Hombre" />} />
+                            <Route path="/mujer" element={<Category key="mujer" category="Mujer" />} />
+                            <Route path="/accesorios" element={<Category key="accesorios" category="Accesorios" />} />
+                            <Route path="/drops" element={<Category key="drops" category="Drops" />} />
+                            <Route path="/nosotros" element={<About />} />
+                            <Route path="/contacto" element={<Contact />} />
                             <Route path="/product/:id" element={<Product />} />
                             <Route path="/cart" element={<Cart />} />
                             <Route path="/search" element={<Search />} />
-                            <Route path="/tienda" element={<Category type="streetwear" />} /> {/* Fallback for promo links */}
-                            <Route path="/nosotros" element={<About />} />
-                            <Route path="/contacto" element={<Contact />} />
+                            <Route path="/checkout" element={<Checkout />} />
+                            <Route path="/success" element={<Success />} />
                             <Route path="/terminos" element={<div className="container" style={{ padding: '100px 0' }}>Términos y Condiciones (Placeholder)</div>} />
                             <Route path="/privacidad" element={<div className="container" style={{ padding: '100px 0' }}>Política de Privacidad (Placeholder)</div>} />
                         </Routes>

@@ -17,19 +17,18 @@ const Header = () => {
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
 
-                {/* Logo */}
-                <div className="logo">
-                    <Link to="/">
-                        <img src="/assets/logo-badge.png" alt="LUKSTORE" className="logo-img" />
-                    </Link>
-                </div>
+                {/* Logo - Header Lockup (Clean) */}
+                <Link to="/" className="logo">
+                    <img src="/assets/logo-lockup.png" alt="LUKSTORE" className="logo-img" />
+                </Link>
 
-                {/* Desktop Nav */}
+                {/* Navigation - Editorial/Reserved Structure */}
                 <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-                    <Link to="/basketball" className="nav-link" onClick={() => setIsMenuOpen(false)}>Basketball</Link>
-                    <Link to="/streetwear" className="nav-link" onClick={() => setIsMenuOpen(false)}>Streetwear</Link>
+                    <Link to="/zapatillas" className="nav-link" onClick={() => setIsMenuOpen(false)}>Zapatillas</Link>
+                    <Link to="/hombre" className="nav-link" onClick={() => setIsMenuOpen(false)}>Hombre</Link>
+                    <Link to="/mujer" className="nav-link" onClick={() => setIsMenuOpen(false)}>Mujer</Link>
+                    <Link to="/accesorios" className="nav-link" onClick={() => setIsMenuOpen(false)}>Accesorios</Link>
                     <Link to="/drops" className="nav-link" onClick={() => setIsMenuOpen(false)}>Drops</Link>
-                    <Link to="/tienda" className="nav-link" onClick={() => setIsMenuOpen(false)}>Tienda</Link>
                     <Link to="/nosotros" className="nav-link" onClick={() => setIsMenuOpen(false)}>Nosotros</Link>
                 </nav>
 

@@ -31,31 +31,38 @@ const Product = () => {
         <div className="product-page">
             <div className="container product-main">
                 {/* Left: Gallery */}
+                {/* Left: Gallery */}
                 <div className="product-gallery">
                     <div className="main-image">
                         <img src={product.image} alt={product.title} />
-                    </div>
-                    <div className="thumbnails">
-                        <img src={product.image} alt="Thumb" />
-                        <img src={product.image} alt="Thumb" />
-                        <img src={product.image} alt="Thumb" />
-                        <img src={product.image} alt="Thumb" />
+                        {product.condition === 'used' && <span className="pdp-badge-used">Pre-Loved</span>}
                     </div>
                 </div>
 
                 {/* Right: Info */}
                 <div className="product-details">
-                    <h1 className="p-title">{product.title}</h1>
-                    <p className="p-price">${product.price}</p>
+                    <div className="p-header">
+                        <span className="p-brand">Jordan Brand</span>
+                        <h1 className="p-title">{product.title}</h1>
+                        <p className="p-price">
+                            ${product.price}
+                            {product.condition === 'used' && <span className="price-note"> (Pre-Loved)</span>}
+                        </p>
+                    </div>
 
-                    <ul className="p-benefits">
-                        <li>✔ Producto original</li>
-                        <li>✔ Stock disponible</li>
-                        <li>✔ Envíos a todo Chile</li>
-                    </ul>
+                    <div className="p-condition-info">
+                        <strong>Estado: {product.condition === 'new' ? 'Nuevo / Deadstock' : 'Pre-Loved / Usado'}</strong>
+                        <p>{product.condition === 'new'
+                            ? 'Producto 100% nuevo, sin uso, en su caja original.'
+                            : 'Producto verificado por nuestro equipo. Condición 9/10. Caja original incluida.'}
+                        </p>
+                    </div>
 
                     <div className="size-selector">
-                        <label>Talla (US)</label>
+                        <div className="size-header">
+                            <label>Seleccionar Talla (US)</label>
+                            <a href="/guia-de-tallas" className="size-guide-link">Guía de tallas</a>
+                        </div>
                         <div className="size-options">
                             {['7', '8', '8.5', '9', '10', '11'].map(s => (
                                 <button
@@ -71,57 +78,40 @@ const Product = () => {
 
                     <div className="p-actions">
                         <button className="btn btn-primary btn-block" onClick={handleAddToCart}>Agregar al carrito</button>
-                        <button className="btn btn-secondary btn-block">Consultar por WhatsApp</button>
+                        <p className="shipping-note">Envío gratis a todo Chile en compras sobre $100.000</p>
+                    </div>
+
+                    {/* Trust / Service Accordion (Visual) */}
+                    <div className="p-service-block">
+                        <div className="service-item">
+                            <span className="icon">🛡️</span>
+                            <div className="text">
+                                <strong>Autenticidad Garantizada</strong>
+                                <p>Cada par es inspeccionado por especialistas antes de ser enviado.</p>
+                            </div>
+                        </div>
+                        <div className="service-item">
+                            <span className="icon">🚚</span>
+                            <div className="text">
+                                <strong>Despacho Express</strong>
+                                <p>Envíos a Santiago en 24h. Regiones 2-5 días hábiles.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="p-short-desc">
+                        <h3>Detalles</h3>
                         <p>{product.description || "Uno de los modelos más icónicos del basketball y el streetwear. Diseño clásico, comodidad y presencia que no pasan desapercibidas."}</p>
                     </div>
                 </div>
             </div>
 
-            <div className="container product-content-blocks">
-                {/* Trust Block */}
-                <div className="trust-block">
-                    <div className="trust-item">Envíos a todo Chile</div>
-                    <div className="trust-item">Productos 100% originales</div>
-                    <div className="trust-item">Atención directa por WhatsApp</div>
-                </div>
-
-                {/* SEO Description */}
-                <div className="long-desc">
-                    <h2>Descripción</h2>
-                    <p>Las Air Jordan 3 White Cement son uno de los modelos más reconocidos en la historia del basketball y la cultura urbana. Su diseño combina materiales de alta calidad, una silueta atemporal y detalles que las convierten en un par imprescindible tanto para la cancha como para el uso diario. En Lukstore trabajamos exclusivamente con productos originales, garantizando stock real y una experiencia de compra confiable. Este modelo está disponible en tallas seleccionadas, con envío a todo Chile y atención directa para resolver cualquier duda antes de tu compra.</p>
-                </div>
-
-                {/* Specs */}
-                <div className="specs">
-                    <h3>Especificaciones</h3>
-                    <dl>
-                        <dt>Marca</dt><dd>Jordan</dd>
-                        <dt>Modelo</dt><dd>{product.title}</dd>
-                        <dt>Color</dt><dd>White Cement</dd>
-                        <dt>Uso</dt><dd>{product.category}</dd>
-                    </dl>
-                </div>
-
-                {/* FAQs */}
-                <div className="faqs">
-                    <h3>Preguntas Frecuentes</h3>
-                    <div className="faq-item">
-                        <strong>¿Son originales?</strong>
-                        <p>Sí, todos nuestros productos son 100% originales.</p>
-                    </div>
-                    <div className="faq-item">
-                        <strong>¿Hacen envíos?</strong>
-                        <p>Sí, enviamos a todo Chile.</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Related */}
+            {/* Related - Cross Sell */}
             <div className="container related-products">
-                <h2>También te podría gustar</h2>
+                <div className="section-header">
+                    <h2>Completa el Fit</h2>
+                    <Link to="/hombre" className="link-arrow">Ver más</Link>
+                </div>
                 <div className="grid product-grid">
                     {RELATED.map(p => <ProductCard key={p.id} {...p} />)}
                 </div>

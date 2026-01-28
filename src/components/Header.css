@@ -1,8 +1,7 @@
 /* Header.css - Editorial/Minimal */
 
 .header {
-    background-color: #E8E8E6;
-    /* Cement color to match logo bg better */
+    background-color: var(--color-paper);
     border-bottom: 1px solid transparent;
     /* Cleaner look */
     position: sticky;
@@ -15,9 +14,9 @@
 }
 
 .header.scrolled {
-    background-color: rgba(245, 245, 243, 0.95);
+    background-color: rgba(245, 245, 243, 0.98);
     backdrop-filter: blur(8px);
-    border-bottom-color: var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .header-container {
@@ -35,11 +34,18 @@
 }
 
 .logo-img {
-    height: 60px;
-    /* Badge size */
+    height: 32px;
+    /* Reserved style: contained, smaller */
     width: auto;
     object-fit: contain;
     transition: transform 0.2s ease;
+}
+
+@media (max-width: 900px) {
+    .logo-img {
+        height: 26px;
+        /* Mobile size */
+    }
 }
 
 .logo-img:hover {
