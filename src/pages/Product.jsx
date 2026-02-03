@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
-import { PRODUCTS } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 import './Product.css';
 
 const Product = () => {
     const { id } = useParams();
     const { addToCart } = useCart();
+    const { getProductById, products, loading } = useProducts();
     const [selectedSize, setSelectedSize] = useState(null);
+    const [product, setProduct] = useState(null);
 
-    const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0]; // Fallback to first if not found (mock safety)
+    useEffect(() => {
+        if (!loading && products.length > 0) {
+            const found = getProductById(id);
+            setProduct(found || null);
+        }
+    }, [id, products, loading, getProductById]);
 
-    if (!product) return <div>Product not found</div>;
+    if (loading) return <div style={{ height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Cargando producto...</div>;
+    if (!product) return <div style={{ padding: '4rem', textAlign: 'center' }}>Producto no encontrado. <a href="/">Volver al inicio</a></div>;
 
     const handleAddToCart = () => {
         if (!selectedSize) {
@@ -20,12 +28,10 @@ const Product = () => {
             return;
         }
         addToCart(product, selectedSize);
-        // Optional: Feedback to user
-        // alert("Agregado al carrito");
     };
 
-    // Mock Related Data
-    const RELATED = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+    // Mock Related Data (filtering from verified loaded products)
+    const RELATED = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
 
     return (
         <div className="product-page">

@@ -39,7 +39,8 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.5;
-  /* Subtle Texture Overlay could go here if we had an asset */
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 
 h1,

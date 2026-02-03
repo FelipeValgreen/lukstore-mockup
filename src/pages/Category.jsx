@@ -4,7 +4,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import SEOBlock from '../components/SEOBlock';
 import './Category.css';
 
-import { getProductsByCategory } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 
 // Content Config
 const CATEGORY_META = {
@@ -30,22 +30,26 @@ const CATEGORY_META = {
 
 const Category = ({ type }) => {
     const meta = CATEGORY_META[type];
+    const { getProductsByCategory, loading } = useProducts();
     const [products, setProducts] = React.useState([]);
     const [filters, setFilters] = React.useState({ size: 'all', sort: 'newest' });
 
     // Initial load & Filter logic
     React.useEffect(() => {
+        if (loading) return;
+
         let result = getProductsByCategory(type);
 
         // Sort
         if (filters.sort === 'price-asc') {
-            result.sort((a, b) => parseInt(a.price.replace(/\./g, '')) - parseInt(b.price.replace(/\./g, '')));
+            // Price is string "199.990", remove dots to sort numerically
+            result.sort((a, b) => parseInt(String(a.price).replace(/\./g, '')) - parseInt(String(b.price).replace(/\./g, '')));
         } else if (filters.sort === 'price-desc') {
-            result.sort((a, b) => parseInt(b.price.replace(/\./g, '')) - parseInt(a.price.replace(/\./g, '')));
+            result.sort((a, b) => parseInt(String(b.price).replace(/\./g, '')) - parseInt(String(a.price).replace(/\./g, '')));
         }
 
         setProducts([...result]);
-    }, [type, filters]);
+    }, [type, filters, loading, getProductsByCategory]);
 
     usePageMeta(meta ? meta.title : 'Categoría', meta ? meta.description : '');
 
