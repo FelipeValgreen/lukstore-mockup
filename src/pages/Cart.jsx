@@ -21,6 +21,17 @@ const Cart = () => {
         <div className="cart-page container">
             <h1 className="cart-title">Tu Carrito ({cartItems.length})</h1>
 
+            {/* Free Shipping Progress */}
+            {cartTotal < 100000 ? (
+                <div className="shipping-alert">
+                    Te faltan <strong>${(100000 - cartTotal).toLocaleString('es-CL')}</strong> para envío gratis.
+                </div>
+            ) : (
+                <div className="shipping-alert success">
+                    ¡Felicidades! Tienes <strong>envío gratis</strong> en tu pedido.
+                </div>
+            )}
+
             <div className="cart-grid">
                 {/* Cart Items List */}
                 <div className="cart-items">

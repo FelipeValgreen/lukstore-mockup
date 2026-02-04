@@ -11,7 +11,7 @@
 
 .product-image-container {
     position: relative;
-    background-color: #F8F8F8;
+    background-color: #FFFFFF;
     /* Subtle light grey for product bg, typical of clean aesthetic */
     aspect-ratio: 4/5;
     overflow: hidden;

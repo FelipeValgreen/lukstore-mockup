@@ -308,3 +308,22 @@
     background-color: #007eb5;
     border-color: #007eb5;
 }
+/* Shipping Alert override */
+.shipping-alert {
+    background: #f9f9f9;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.shipping-alert.success {
+    background: #e6fffa;
+    color: #047857;
+    border-color: #d1fae5;
+}
+
+.shipping-alert strong {
+    font-weight: 700;
+}
