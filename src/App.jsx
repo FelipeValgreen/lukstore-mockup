@@ -25,6 +25,8 @@ import SizeGuide from './pages/Support/SizeGuide';
 import Shipping from './pages/Support/Shipping';
 import Authenticity from './pages/Support/Authenticity';
 import Legal from './pages/Support/Legal';
+import Admin from './pages/Admin';
+import Tracking from './pages/Tracking';
 
 function App() {
     return (
@@ -57,6 +59,10 @@ function App() {
                         <Route path="/autenticidad" element={<Authenticity />} />
                         <Route path="/terminos" element={<Legal />} />
                         <Route path="/privacidad" element={<Legal />} />
+
+                        {/* Admin & Tools */}
+                        <Route path="/admin" element={<Admin />} />
+                        <Route path="/tracking" element={<Tracking />} />
                     </Routes>
                 </main>
                 <Footer />
