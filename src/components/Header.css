@@ -34,8 +34,8 @@
 }
 
 .logo-img {
-    height: 48px;
-    /* Increased for visibility */
+    height: 56px;
+    /* Increased for visibility of badge */
     width: auto;
     object-fit: contain;
     transition: transform 0.2s ease;
@@ -43,7 +43,7 @@
 
 @media (max-width: 900px) {
     .logo-img {
-        height: 32px;
+        height: 40px;
         /* Mobile size increased */
     }
 }

@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../supabase';
 
 export const useProducts = () => {
@@ -45,21 +45,21 @@ export const useProducts = () => {
         fetchProducts();
     }, []);
 
-    const getActiveDrops = () => products.filter(p => p.isDrop);
-    const getFeaturedProducts = () => products.filter(p => p.condition === 'new');
-    const getUsedProducts = () => products.filter(p => p.condition === 'used');
+    const getActiveDrops = useCallback(() => products.filter(p => p.isDrop), [products]);
+    const getFeaturedProducts = useCallback(() => products.filter(p => p.condition === 'new'), [products]);
+    const getUsedProducts = useCallback(() => products.filter(p => p.condition === 'used'), [products]);
 
     // Helper to filter locally (since we fetch all at once for this small store)
-    const getProductsByCategory = (cat) => {
+    const getProductsByCategory = useCallback((cat) => {
         if (!products.length) return [];
         if (cat === 'drops') return getActiveDrops();
         return products.filter(p =>
             p.category.toLowerCase().includes(cat.toLowerCase()) ||
             p.title.toLowerCase().includes(cat.toLowerCase())
         );
-    };
+    }, [products, getActiveDrops]);
 
-    const getProductById = (id) => products.find(p => p.id === id);
+    const getProductById = useCallback((id) => products.find(p => p.id === id), [products]);
 
     return {
         products,

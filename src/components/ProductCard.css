@@ -48,29 +48,57 @@
     padding: 8px;
 }
 
+
+.card-isotype {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.15;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .card-isotype {
+    opacity: 0.4;
+}
+
+.card-isotype img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .badge {
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 0.25rem 0.5rem;
+    padding: 0.35rem 0.6rem;
+    /* Slightly bigger padding */
     letter-spacing: 0.05em;
+    color: var(--color-ink);
+    background-color: transparent;
+    border: 1px solid var(--color-ink);
+    /* Clean outlined look from manual */
+}
+
+/* Specific variants if needed, but manual suggests minimal/clean */
+.badge-drop {
+    background-color: var(--color-ink);
     color: var(--color-paper);
 }
 
-.badge-drop {
-    background-color: var(--color-ink);
+.badge-new {
+    /* Inherit outlined style */
 }
 
 .badge-used {
-    background-color: #8b5cf6;
-    /* Editorial Purple/Vintage indication */
-    color: white;
+    border-color: #555;
+    color: #555;
 }
 
-.badge-sale {
-    background-color: var(--color-accent);
-    /* Red */
-}
 
 .product-info {
     text-align: left;

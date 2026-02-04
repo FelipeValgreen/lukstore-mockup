@@ -9,9 +9,13 @@ const Footer = () => {
             <div className="container footer-grid">
                 {/* Col 1: Brand */}
                 <div className="footer-col brand-col">
-                    <img src="/assets/logo-isotype.png" alt="LUKSTORE" className="footer-logo" />
-                    <h3 className="footer-brand-name">LUKSTORE</h3>
-                    <p className="footer-tagline">Selected street goods.</p>
+                    <div className="footer-brand">
+                        <img src="/assets/logo-badge.png" alt="LUKSTORE" className="footer-logo-img" />
+                        <p className="footer-tagline">SELECTED STREET GOODS</p>
+                        <p className="footer-desc">
+                            Zapatillas y streetwear auténtico. <br />Sin fechas falsas, solo cultura.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Col 2: Ayuda */}
