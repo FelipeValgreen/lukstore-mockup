@@ -10,36 +10,36 @@ const Footer = () => {
                     <div className="footer-col brand-col">
                         <h4 className="footer-logo">LUKSTORE</h4>
                         <p className="footer-desc">
-                            Curated streetwear and vintage essentials.
-                            Authenticated in Chile, shipped worldwide.
+                            Streetwear curado y esenciales vintage.
+                            Autenticados en Chile, envíos a todo el mundo.
                         </p>
                     </div>
 
                     <div className="footer-col">
-                        <h5>Shop</h5>
+                        <h5>Tienda</h5>
                         <ul className="footer-links">
-                            <li><Link to="/zapatillas">Footwear</Link></li>
-                            <li><Link to="/hombre">Apparel</Link></li>
-                            <li><Link to="/drops">Exclusive Drops</Link></li>
-                            <li><Link to="/accesorios">Accessories</Link></li>
+                            <li><Link to="/zapatillas">Zapatillas</Link></li>
+                            <li><Link to="/hombre">Ropa</Link></li>
+                            <li><Link to="/drops">Drops Exclusivos</Link></li>
+                            <li><Link to="/accesorios">Accesorios</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-col">
-                        <h5>Support</h5>
+                        <h5>Soporte</h5>
                         <ul className="footer-links">
-                            <li><Link to="/envios">Shipping & Returns</Link></li>
-                            <li><Link to="/guia-tallas">Size Guide</Link></li>
-                            <li><Link to="/autenticidad">Authenticity Guarantee</Link></li>
-                            <li><Link to="/contacto">Contact Us</Link></li>
+                            <li><Link to="/envios">Envíos y Devoluciones</Link></li>
+                            <li><Link to="/guia-tallas">Guía de Tallas</Link></li>
+                            <li><Link to="/autenticidad">Garantía de Autenticidad</Link></li>
+                            <li><Link to="/contacto">Contáctanos</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-col newsletter-col">
-                        <h5>Stay in the loop</h5>
-                        <p className="newsletter-text">Subscribe for exclusive drops and early access.</p>
+                        <h5>Mantente informado</h5>
+                        <p className="newsletter-text">Suscríbete para drops exclusivos y acceso anticipado.</p>
                         <form className="newsletter-form">
-                            <input type="email" placeholder="Email address" />
+                            <input type="email" placeholder="Tu correo electrónico" />
                             <button type="submit" className="btn-arrow">→</button>
                         </form>
                         <div className="social-links">
@@ -51,11 +51,11 @@ const Footer = () => {
 
                 <div className="footer-bottom">
                     <div className="copyright">
-                        © {new Date().getFullYear()} Lukstore. All rights reserved.
+                        © {new Date().getFullYear()} Lukstore. Todos los derechos reservados.
                     </div>
                     <div className="legal-links">
-                        <Link to="/terminos">Terms</Link>
-                        <Link to="/privacidad">Privacy</Link>
+                        <Link to="/terminos">Términos</Link>
+                        <Link to="/privacidad">Privacidad</Link>
                     </div>
                 </div>
             </div>
