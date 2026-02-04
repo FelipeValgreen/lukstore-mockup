@@ -36,7 +36,7 @@ const Home = () => {
                 </div>
                 <div className="product-grid">
                     {featuredProducts.slice(0, 4).map(product => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard key={product.id} {...product} />
                     ))}
                 </div>
             </section>
@@ -56,7 +56,7 @@ const Home = () => {
                 </div>
                 <div className="product-grid">
                     {usedProducts.slice(0, 4).map(product => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard key={product.id} {...product} />
                     ))}
                 </div>
             </section>
