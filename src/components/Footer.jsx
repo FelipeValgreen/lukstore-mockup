@@ -7,60 +7,47 @@ const Footer = () => {
         <footer className="footer-premium">
             <div className="container">
                 <div className="footer-top">
-                    <div className="footer-col brand-col">
-                        <h4 className="footer-logo">LUKSTORE</h4>
-                        <p className="footer-desc">
-                            Streetwear curado y esenciales vintage.
-                            Autenticados en Chile, envíos a todo el mundo.
-                        </p>
+                    <div className="footer-top">
+                        {/* Col 1: Brand */}
+                        <div className="footer-col brand-col">
+                            <h4 className="footer-logo">LUKSTORE</h4>
+                            <p className="footer-desc">
+                                Selected street goods.
+                            </p>
+                        </div>
+
+                        {/* Col 2: Help */}
+                        <div className="footer-col">
+                            <h5>Ayuda</h5>
+                            <ul className="footer-links">
+                                <li><Link to="/guia-tallas">Guía de tallas</Link></li>
+                                <li><Link to="/envios">Envíos y devoluciones</Link></li>
+                                <li><Link to="/autenticidad">Autenticidad</Link></li>
+                                <li><Link to="/contacto">Contacto</Link></li>
+                            </ul>
+                        </div>
+
+                        {/* Col 3: Social & Contact */}
+                        <div className="footer-col newsletter-col">
+                            <h5>Social</h5>
+                            <div className="social-links" style={{ justifyContent: 'flex-start', marginBottom: '1.5rem' }}>
+                                <a href="https://wa.me/56912345678" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style={{ border: 'none', width: 'auto', padding: '0' }}>WhatsApp</a>
+                                <a href="#" aria-label="Instagram" style={{ border: 'none', width: 'auto', padding: '0' }}>Instagram</a>
+                                <a href="#" aria-label="TikTok" style={{ border: 'none', width: 'auto', padding: '0' }}>TikTok</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="footer-col">
-                        <h5>Tienda</h5>
-                        <ul className="footer-links">
-                            <li><Link to="/zapatillas">Zapatillas</Link></li>
-                            <li><Link to="/hombre">Ropa</Link></li>
-                            <li><Link to="/drops">Drops Exclusivos</Link></li>
-                            <li><Link to="/accesorios">Accesorios</Link></li>
-                        </ul>
-                    </div>
-
-                    <div className="footer-col">
-                        <h5>Soporte</h5>
-                        <ul className="footer-links">
-                            <li><Link to="/faq">Preguntas Frecuentes</Link></li>
-                            <li><Link to="/envios">Envíos y Devoluciones</Link></li>
-                            <li><Link to="/guia-tallas">Guía de Tallas</Link></li>
-                            <li><Link to="/tracking">Seguimiento de Pedido</Link></li>
-                            <li><Link to="/autenticidad">Garantía de Autenticidad</Link></li>
-                            <li><Link to="/contacto">Contáctanos</Link></li>
-                        </ul>
-                    </div>
-
-                    <div className="footer-col newsletter-col">
-                        <h5>Mantente informado</h5>
-                        <p className="newsletter-text">Suscríbete para drops exclusivos y acceso anticipado.</p>
-                        <form className="newsletter-form">
-                            <input type="email" placeholder="Tu correo electrónico" />
-                            <button type="submit" className="btn-arrow">→</button>
-                        </form>
-                        <div className="social-links">
-                            <a href="#" aria-label="Instagram">IG</a>
-                            <a href="#" aria-label="TikTok">TK</a>
+                    <div className="footer-bottom">
+                        <div className="copyright">
+                            © {new Date().getFullYear()} Lukstore. Todos los derechos reservados.
+                        </div>
+                        <div className="legal-links">
+                            <Link to="/terminos">Términos</Link>
+                            <Link to="/privacidad">Privacidad</Link>
                         </div>
                     </div>
                 </div>
-
-                <div className="footer-bottom">
-                    <div className="copyright">
-                        © {new Date().getFullYear()} Lukstore. Todos los derechos reservados.
-                    </div>
-                    <div className="legal-links">
-                        <Link to="/terminos">Términos</Link>
-                        <Link to="/privacidad">Privacidad</Link>
-                    </div>
-                </div>
-            </div>
         </footer>
     );
 };

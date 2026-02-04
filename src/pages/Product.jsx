@@ -89,46 +89,44 @@ const Product = () => {
 
                     <div className="p-actions">
                         <button className="btn btn-primary btn-block" onClick={handleAddToCart}>AGREGAR AL CARRITO</button>
-                        <p className="shipping-note">Envío gratis a todo Chile en compras sobre $100.000</p>
-                    </div>
+                        {/* 6. Descripción Real */}
+                        <div className="p-short-desc" style={{ marginBottom: '2rem' }}>
+                            <h3 style={{ fontSize: '0.9rem', uppercase: 'true', marginBottom: '0.5rem' }}>Detalles</h3>
+                            <p>{product.description || "Uno de los modelos más icónicos del basketball y el streetwear. Diseño clásico, comodidad y presencia que no pasan desapercibidas."}</p>
+                        </div>
 
-                    {/* Trust / Service Accordion (Visual) */}
-                    <div className="p-service-block">
-                        <div className="service-item">
-                            <span className="icon">🛡️</span>
-                            <div className="text">
-                                <strong>Autenticidad Garantizada</strong>
-                                <p>Todos nuestros productos son revisados y seleccionados antes de ser publicados.</p>
+                        {/* 7, 8, 9. Info Blocks (Accordion Style or List) */}
+                        <div className="p-info-list" style={{ borderTop: '1px solid #eee' }}>
+                            <div className="info-item" style={{ padding: '1rem 0', borderBottom: '1px solid #eee' }}>
+                                <h4 style={{ fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: 600 }}>Guía de Tallas</h4>
+                                <p style={{ fontSize: '0.8rem', color: '#666' }}>Las tallas pueden variar. <Link to="/guia-tallas" style={{ textDecoration: 'underline' }}>Ver tabla de conversiones.</Link></p>
+                            </div>
+                            <div className="info-item" style={{ padding: '1rem 0', borderBottom: '1px solid #eee' }}>
+                                <h4 style={{ fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: 600 }}>Envíos y Devoluciones</h4>
+                                <p style={{ fontSize: '0.8rem', color: '#666' }}>Realizamos envíos a todo Chile. Tiempos varían según ubicación. <Link to="/envios" style={{ textDecoration: 'underline' }}>Ver políticas.</Link></p>
+                            </div>
+                            <div className="info-item" style={{ padding: '1rem 0', borderBottom: '1px solid #eee' }}>
+                                <h4 style={{ fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: 600 }}>Autenticidad</h4>
+                                <p style={{ fontSize: '0.8rem', color: '#666' }}>
+                                    Todos nuestros productos son revisados antes de ser publicados. La información entregada busca ayudarte a tomar una decisión informada.
+                                </p>
                             </div>
                         </div>
-                        <div className="service-item">
-                            <span className="icon">🚚</span>
-                            <div className="text">
-                                <strong>Despacho Express</strong>
-                                <p>Envíos a Santiago en 24h. Regiones 2-5 días hábiles.</p>
-                            </div>
-                        </div>
                     </div>
+                </div>
 
-                    <div className="p-short-desc">
-                        <h3>Detalles</h3>
-                        <p>{product.description || "Uno de los modelos más icónicos del basketball y el streetwear. Diseño clásico, comodidad y presencia que no pasan desapercibidas."}</p>
+                {/* Related - Cross Sell */}
+                <div className="container related-products">
+                    <div className="section-header">
+                        <h2>Completa el Fit</h2>
+                        <Link to="/hombre" className="link-arrow">Ver más</Link>
+                    </div>
+                    <div className="grid product-grid">
+                        {RELATED.map(p => <ProductCard key={p.id} {...p} />)}
                     </div>
                 </div>
             </div>
-
-            {/* Related - Cross Sell */}
-            <div className="container related-products">
-                <div className="section-header">
-                    <h2>Completa el Fit</h2>
-                    <Link to="/hombre" className="link-arrow">Ver más</Link>
-                </div>
-                <div className="grid product-grid">
-                    {RELATED.map(p => <ProductCard key={p.id} {...p} />)}
-                </div>
-            </div>
-        </div>
-    );
+            );
 };
 
-export default Product;
+            export default Product;

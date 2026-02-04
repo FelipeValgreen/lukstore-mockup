@@ -8,148 +8,133 @@ import './Home.css';
 
 const Home = () => {
     const { getFeaturedProducts, getUsedProducts, loading } = useProducts();
-    const featuredProducts = getFeaturedProducts() || [];
-    const usedProducts = getUsedProducts() || [];
+    const newArrivals = getFeaturedProducts() || []; // "Nuevos Ingresos" logic (using featured for now)
+    const featuredSelection = getUsedProducts() || []; // "Selección Destacada" logic (using used for variety)
 
     // Animation Variants
     const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
     };
 
     const staggerContainer = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
+            transition: { staggerChildren: 0.1 }
         }
     };
 
-    if (loading) {
-        // A better loading state could be a skeleton, but text is fine for now
-        return <div className="loading-screen">Loading Collection...</div>;
-    }
+    if (loading) return <div className="loading-screen"></div>;
 
     return (
         <div className="home-clean">
             <Helmet>
-                <title>LUKSTORE | Premium Streetwear & Vintage</title>
-                <meta name="description" content="Curated streetwear, vintage sneakers, and exclusive drops. Authenticated in Chile, shipping worldwide." />
+                <title>LUKSTORE | Selected Street Goods</title>
+                <meta name="description" content="Zapatillas, ropa y accesorios urbanos seleccionados uno a uno." />
             </Helmet>
 
-            {/* HERO SECTION - ANIMATED */}
-            <motion.section
-                className="hero-clean"
-                initial="hidden"
-                animate="visible"
-                variants={staggerContainer}
-            >
+            {/* 1. HERO PRINCIPAL */}
+            <section className="hero-clean" style={{ backgroundImage: 'url(/assets/hero-street-editorial.png)' }}>
+                <div className="hero-overlay"></div>
                 <div className="hero-content">
-                    <motion.span variants={fadeInUp} className="hero-pretitle">Fall / Winter 2024</motion.span>
-                    <motion.h1 variants={fadeInUp} className="hero-title">HERITAGE<br />COLLECTION</motion.h1>
-                    <motion.div variants={fadeInUp} className="hero-actions">
-                        <Link to="/zapatillas" className="btn btn-primary">Shop Footwear</Link>
-                        <Link to="/drops" className="btn btn-outline">View Drops</Link>
-                    </motion.div>
-                </div>
-            </motion.section>
-
-            {/* TRUST BAR (New) */}
-            <div className="trust-bar container">
-                <span>Verified Authentic</span>
-                <span className="separator">•</span>
-                <span>Global Shipping</span>
-                <span className="separator">•</span>
-                <span>Curated Selection</span>
-            </div>
-
-            {/* MANIFESTO */}
-            <motion.section
-                className="manifesto-clean container"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={fadeInUp}
-            >
-                <p>
-                    "We don't just sell clothes. We archive culture." <br />
-                    Lukstore curates exceptional footwear and apparel from the past and present.
-                </p>
-            </motion.section>
-
-            {/* CATEGORIES */}
-            <motion.section
-                className="categories-clean container"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerContainer}
-            >
-                <motion.div variants={fadeInUp}>
-                    <Link to="/zapatillas" className="cat-link">
-                        <div className="cat-image-wrap">
-                            <img src="/assets/cat-basketball.png" alt="Basketball Sneakers" loading="lazy" />
-                        </div>
-                        <h3>Basketball</h3>
-                    </Link>
-                </motion.div>
-                <motion.div variants={fadeInUp}>
-                    <Link to="/hombre" className="cat-link">
-                        <div className="cat-image-wrap">
-                            <img src="/assets/cat-streetwear.png" alt="Streetwear Apparel" loading="lazy" />
-                        </div>
-                        <h3>Streetwear</h3>
-                    </Link>
-                </motion.div>
-                <motion.div variants={fadeInUp}>
-                    <Link to="/drops" className="cat-link">
-                        <div className="cat-image-wrap">
-                            <img src="/assets/cat-drops.png" alt="Exclusive Drops" loading="lazy" />
-                        </div>
-                        <h3>Drops</h3>
-                    </Link>
-                </motion.div>
-            </motion.section>
-
-            {/* NEW ARRIVALS */}
-            <section className="products-clean container">
-                <div className="section-header-clean">
-                    <h2>Latest Arrivals</h2>
-                    <Link to="/zapatillas" className="link-underlined">View All</Link>
-                </div>
-                <div className="product-grid-clean">
-                    {featuredProducts.slice(0, 4).map(product => (
-                        <ProductCard key={product.id} {...product} />
-                    ))}
-                </div>
-            </section>
-
-            {/* BANNER */}
-            <section className="banner-clean">
-                <div className="container">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
+                        className="hero-title"
                     >
-                        <h2>Authentic Culture</h2>
-                        <Link to="/nosotros" className="btn btn-outline">Read Our Story</Link>
+                        SELECTED<br />STREET GOODS
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="hero-subtitle"
+                    >
+                        Zapatillas, ropa y accesorios urbanos seleccionados uno a uno.
+                    </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.8 }}
+                        className="hero-actions"
+                    >
+                        <Link to="/zapatillas" className="btn btn-primary">Ver Zapatillas</Link>
+                        <Link to="/drops" className="btn btn-outline-white">Ver Drops</Link>
                     </motion.div>
                 </div>
             </section>
 
-            {/* PRE LOVED */}
-            <section className="products-clean container">
-                <div className="section-header-clean">
-                    <h2>Pre-Loved Archive</h2>
-                    <Link to="/zapatillas" className="link-underlined">View All</Link>
+            {/* 2. CATEGORÍAS */}
+            <section className="container categories-section">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="categories-grid-5"
+                >
+                    {[
+                        { title: 'Zapatillas', link: '/zapatillas', copy: 'Sneakers urbanos seleccionados por diseño, estado y autenticidad.' },
+                        { title: 'Hombre', link: '/hombre', copy: 'Ropa urbana pensada para el día a día.' },
+                        { title: 'Mujer', link: '/mujer', copy: 'Streetwear funcional con carácter.' },
+                        { title: 'Accesorios', link: '/accesorios', copy: 'Detalles que completan el fit.' },
+                        { title: 'Drops', link: '/drops', copy: 'Lanzamientos y selecciones limitadas.' }
+                    ].map((cat) => (
+                        <motion.div key={cat.title} variants={fadeInUp} className="cat-card-text">
+                            <Link to={cat.link}>
+                                <h3>{cat.title}</h3>
+                                <p>{cat.copy}</p>
+                            </Link>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </section>
+
+            {/* 3. NUEVOS INGRESOS */}
+            <section className="container product-section">
+                <div className="section-header">
+                    <h2>Nuevos Ingresos</h2>
+                    <Link to="/zapatillas" className="link-arrow">Ver todo</Link>
                 </div>
-                <div className="product-grid-clean">
-                    {usedProducts.slice(0, 4).map(product => (
+                <div className="product-grid">
+                    {newArrivals.slice(0, 4).map(product => (
                         <ProductCard key={product.id} {...product} />
                     ))}
+                </div>
+            </section>
+
+            {/* 4. BANNER EDITORIAL */}
+            <section className="banner-sale">
+                <div className="banner-content">
+                    <h2>SUMMER SALE</h2>
+                    <p>Selección de temporada con descuentos limitados.</p>
+                    <Link to="/drops" className="btn btn-white">Ver ofertas</Link>
+                </div>
+            </section>
+
+            {/* 5. PRODUCTOS DESTACADOS */}
+            <section className="container product-section">
+                <div className="section-header">
+                    <h2>Selección Destacada</h2>
+                    <Link to="/drops" className="link-arrow">Ver selección</Link>
+                </div>
+                <div className="product-grid">
+                    {featuredSelection.slice(0, 4).map(product => (
+                        <ProductCard key={product.id} {...product} />
+                    ))}
+                </div>
+            </section>
+
+            {/* 6. CTA FINAL */}
+            <section className="final-cta container">
+                <div className="cta-box">
+                    <h2>Completa tu fit</h2>
+                    <div className="cta-buttons">
+                        <Link to="/hombre" className="btn btn-secondary">Hombre</Link>
+                        <Link to="/mujer" className="btn btn-secondary">Mujer</Link>
+                    </div>
                 </div>
             </section>
         </div>

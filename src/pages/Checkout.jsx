@@ -85,6 +85,7 @@ const Checkout = () => {
     return (
         <div className="cart-page container"> {/* Reusing cart-page layout class for padding */}
             <h1 className="cart-title">Finalizar Compra</h1>
+            <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#666' }}>Completa tus datos para finalizar tu pedido.</p>
 
             <div className="cart-grid">
                 {/* Left: Form */}

@@ -234,8 +234,143 @@
         font-size: 2.5rem;
     }
 
+    /* ... existing responsive ... */
     .trust-bar {
         font-size: 0.6rem;
         flex-wrap: wrap;
+    }
+}
+
+/* --- NEW MASTER DIRECTIVE STYLES --- */
+
+/* 2. CATEGORIES 5-COL */
+.categories-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 6rem;
+}
+
+.cat-card-text a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: #f9f9f9;
+    height: 100%;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.cat-card-text a:hover {
+    background: #fff;
+    border-color: #000;
+    transform: translateY(-2px);
+}
+
+.cat-card-text h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.cat-card-text p {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 4. BANNER SALE */
+.banner-sale {
+    position: relative;
+    padding: 8rem 0;
+    text-align: center;
+    margin-bottom: 6rem;
+    background-color: #1a1a1a;
+    background-image: url('/assets/banner-sale.png');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-content {
+    background: rgba(0, 0, 0, 0.4);
+    /* Backdrop for readability */
+    padding: 2rem;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* 6. FINAL CTA */
+.final-cta {
+    padding: 2rem 0 6rem;
+    text-align: center;
+}
+
+.cta-box {
+    background: #f4f4f4;
+    padding: 4rem;
+}
+
+.cta-box h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* RESPONSIVE UPDATES */
+@media (max-width: 900px) {
+    .categories-grid-5 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Make the last item (Drops) full width on mobile grid? */
+    .categories-grid-5>div:last-child {
+        grid-column: span 2;
+        background: #000;
+        color: #fff;
+    }
+
+    .categories-grid-5>div:last-child a {
+        background: #000;
+        color: #fff;
+    }
+
+    .categories-grid-5>div:last-child p {
+        color: #ccc;
+    }
+
+    .banner-content h2 {
+        font-size: 2.5rem;
     }
 }

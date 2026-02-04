@@ -3,34 +3,16 @@ import { usePageMeta } from '../../hooks/usePageMeta';
 import '../../pages/Institutional.css';
 
 const Authenticity = () => {
-    usePageMeta('Autenticidad Garantizada', 'Proceso de legitimación de sneakers en Lukstore. Revisión experta punto por punto.');
+    usePageMeta('Autenticidad', 'Proceso de verificación.');
 
     return (
         <div className="institutional-page">
-            <div className="kp-hero" style={{ height: '40vh', backgroundImage: 'url(/assets/hero-street-editorial.png)', backgroundPosition: 'center' }}>
-                <div className="kp-overlay"></div>
-                <h1>Legit Check</h1>
-            </div>
+            <div className="container" style={{ padding: '6rem 0', maxWidth: '800px' }}>
+                <h1 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Autenticidad</h1>
 
-            <div className="container kp-content">
-                <div className="manifesto-highlight">
-                    <h2>Sin dudas. Sin réplicas. 100% Real.</h2>
-                    <p>En una industria llena de incertidumbre, nosotros somos el filtro de confianza. Cada par que entra a Lukstore pasa por una revisión manual exhaustiva.</p>
-                </div>
-
-                <div className="kp-text-block">
-                    <h3>Nuestro Proceso</h3>
-                    <p>
-                        No confiamos solo en apps. Nuestro equipo revisa tacto, olor, costuras, luz UV y códigos de producción.
-                        Conocemos las diferencias de fabricación entre años y fábricas.
-                    </p>
-                    <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', margin: '2rem 0', lineHeight: '2' }}>
-                        <li><strong>Origen:</strong> Solo compramos a coleccionistas verificados y retailers oficiales.</li>
-                        <li><strong>Inspección:</strong> Costuras internas, plantilla, etiqueta de caja y horma.</li>
-                        <li><strong>Garantía:</strong> Si se demuestra que un producto no es auténtico, devolvemos el 100% de tu dinero + una compensación.</li>
-                    </ul>
-                    <p>Nunca hemos fallado. Y no planeamos empezar ahora.</p>
-                </div>
+                <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#111' }}>
+                    Todos los productos publicados en Lukstore son revisados antes de ser puestos a la venta. Nuestro proceso busca entregar información clara y transparente para ayudarte a tomar una decisión informada.
+                </p>
             </div>
         </div>
     );

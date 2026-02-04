@@ -80,7 +80,7 @@ const Cart = () => {
                         <span>${cartTotal.toLocaleString('es-CL')}</span>
                     </div>
                     <button className="btn btn-primary btn-block checkout-btn">
-                        Ir a Pagar
+                        Finalizar compra
                     </button>
                     <Link to="/" className="continue-shopping">
                         <ArrowLeft size={16} /> Seguir comprando

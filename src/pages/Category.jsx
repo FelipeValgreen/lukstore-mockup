@@ -25,6 +25,12 @@ const CATEGORY_META = {
         description: "Lanzamientos especiales. Cuando se acaban, no vuelven. Sin hype falso.",
         image: "/assets/cat-drops.png",
         seoText: "Acceso exclusivo a los pares más codiciados de la temporada. Nuestra sección de Limited Drops se actualiza semanalmente con stock muy limitado. Recomendamos activar notificaciones y estar atento a nuestro Instagram."
+    },
+    accesorios: {
+        title: "Accesorios",
+        description: "Detalles que completan el fit.",
+        image: "/assets/cat-streetwear.png",
+        seoText: "Complementos seleccionados para cerrar tu outfit. Desde gorros y calcetines hasta bolsos y joyería urbana. Calidad y diseño funcional."
     }
 };
 

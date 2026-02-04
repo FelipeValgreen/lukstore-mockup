@@ -18,12 +18,11 @@ const Drops = () => {
                 <div className="container" style={{ position: 'relative', zIndex: 2, color: 'white' }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#FF3B30', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 'bold', marginBottom: '1rem' }}>
                         <Clock size={16} />
-                        <span>NEXT DROP: 24h 10m</span>
+                        <span>STOCK LIMITADO</span>
                     </div>
-                    <h1 style={{ fontSize: '4rem', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>Limited Releases</h1>
+                    <h1 style={{ fontSize: '4rem', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>Drops</h1>
                     <p style={{ fontSize: '1.2rem', opacity: 0.9, maxWidth: '500px' }}>
-                        Acceso exclusivo a colaboraciones y siluetas difíciles de encontrar.
-                        Stock limitado. Sin restocks.
+                        Selecciones y lanzamientos disponibles por tiempo limitado. Una vez que se van, no siempre vuelven.
                     </p>
                 </div>
             </div>
