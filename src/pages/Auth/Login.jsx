@@ -38,7 +38,7 @@ const Login = () => {
                             <input type="password" placeholder="Contraseña" required style={{ padding: '1rem', width: '100%', border: '1px solid #ddd' }} />
                         </div>
                         <div style={{ textAlign: 'right', fontSize: '0.8rem' }}>
-                            <a href="#" style={{ color: '#666' }}>¿Olvidaste tu contraseña?</a>
+                            <button type="button" onClick={() => alert('Función de recuperación no implementada en demo')} style={{ background: 'none', border: 'none', color: '#666', textDecoration: 'underline', cursor: 'pointer', padding: 0 }}>¿Olvidaste tu contraseña?</button>
                         </div>
                         <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
                             {loading ? 'Entrando...' : 'Ingresar'}

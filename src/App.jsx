@@ -21,6 +21,9 @@ import Drops from './pages/Drops';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
+import Blog from './pages/Blog/Blog';
+import BlogPost from './pages/Blog/BlogPost';
+
 // Support Pages
 import SizeGuide from './pages/Support/SizeGuide';
 import Shipping from './pages/Support/Shipping';
@@ -54,6 +57,8 @@ function App() {
 
                         <Route path="/nosotros" element={<About />} />
                         <Route path="/contacto" element={<Contact />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog/:slug" element={<BlogPost />} />
 
                         <Route path="/search" element={<Search />} />
                         <Route path="/checkout" element={<Checkout />} />

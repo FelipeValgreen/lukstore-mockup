@@ -89,9 +89,10 @@ const Product = () => {
 
                     <div className="p-actions">
                         <button className="btn btn-primary btn-block" onClick={handleAddToCart}>AGREGAR AL CARRITO</button>
+
                         {/* 6. Descripción Real */}
-                        <div className="p-short-desc" style={{ marginBottom: '2rem' }}>
-                            <h3 style={{ fontSize: '0.9rem', uppercase: 'true', marginBottom: '0.5rem' }}>Detalles</h3>
+                        <div className="p-short-desc" style={{ marginBottom: '2rem', marginTop: '1rem' }}>
+                            <h3 style={{ fontSize: '0.9rem', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Detalles</h3>
                             <p>{product.description || "Uno de los modelos más icónicos del basketball y el streetwear. Diseño clásico, comodidad y presencia que no pasan desapercibidas."}</p>
                         </div>
 
@@ -114,19 +115,20 @@ const Product = () => {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {/* Related - Cross Sell */}
-                <div className="container related-products">
-                    <div className="section-header">
-                        <h2>Completa el Fit</h2>
-                        <Link to="/hombre" className="link-arrow">Ver más</Link>
-                    </div>
-                    <div className="grid product-grid">
-                        {RELATED.map(p => <ProductCard key={p.id} {...p} />)}
-                    </div>
+            {/* Related - Cross Sell */}
+            <div className="container related-products">
+                <div className="section-header">
+                    <h2>Completa el Fit</h2>
+                    <Link to="/hombre" className="link-arrow">Ver más</Link>
+                </div>
+                <div className="grid product-grid">
+                    {RELATED.map(p => <ProductCard key={p.id} {...p} />)}
                 </div>
             </div>
-            );
+        </div>
+    );
 };
 
-            export default Product;
+export default Product;
