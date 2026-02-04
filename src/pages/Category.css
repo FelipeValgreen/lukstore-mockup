@@ -1,7 +1,9 @@
 .cat-hero {
     position: relative;
-    height: 300px;
-    /* Shorter for categories */
+    min-height: 40vh;
+    /* Allow growth */
+    padding: 4rem 1rem;
+    /* Add breathing room */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -9,7 +11,37 @@
     justify-content: center;
     text-align: center;
     color: var(--color-paper);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    background-color: #1a1a1a;
+    /* Fallback */
+}
+
+/*... existing ...*/
+
+.cat-products {
+    width: 100%;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cat-hero h1 {
+        font-size: 2rem;
+    }
 }
 
 .cat-hero-overlay {
