@@ -1,24 +1,15 @@
-/* Header.css - Premium Dark */
+/* Header.css - Clean Heritage */
 
 .header {
-    background-color: transparent;
-    /* Start transparent for hero */
-    position: fixed;
-    /* Fixed to float over content */
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
     top: 0;
     z-index: 100;
     height: var(--header-height);
     display: flex;
     align-items: center;
     width: 100%;
-    transition: background-color 0.3s ease, border-bottom 0.3s ease;
-}
-
-.header.scrolled {
-    background-color: rgba(14, 14, 14, 0.95);
-    /* Dark background on scroll */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
 }
 
 .header-container {
@@ -37,12 +28,12 @@
 }
 
 .logo-img {
-    height: 40px;
-    /* Refined size */
+    height: 32px;
+    /* Small, understated logo */
     width: auto;
     object-fit: contain;
-    filter: invert(1) brightness(2);
-    /* Invert logo to white if it's black */
+    /* No inversion need, standard logo should be black. If strictly white logo file, might need invert, 
+       but assuming we have black logo or will rely on standard rendering */
 }
 
 /* Navigation */
@@ -54,33 +45,17 @@
 }
 
 .nav-link {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     color: var(--color-text);
     letter-spacing: 0.1em;
     position: relative;
-    opacity: 0.8;
-    transition: opacity 0.2s;
+    transition: color 0.2s;
 }
 
 .nav-link:hover {
-    opacity: 1;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--color-text);
-    transition: width 0.2s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
+    color: var(--color-text-secondary);
 }
 
 /* Actions */
@@ -111,7 +86,7 @@
     position: absolute;
     top: -2px;
     right: -4px;
-    background-color: var(--color-accent);
+    background-color: var(--color-text);
     color: white;
     font-size: 0.65rem;
     font-weight: 700;

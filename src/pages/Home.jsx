@@ -9,93 +9,82 @@ const Home = () => {
     const featuredProducts = getFeaturedProducts();
     const usedProducts = getUsedProducts();
 
-    // Scroll manipulation for hero parallax if desired, or simple CSS.
-
     if (loading) {
-        return <div className="loading-screen">CARGANDO...</div>;
+        return <div className="loading-screen">Cargando...</div>;
     }
 
     return (
-        <div className="home-editorial">
+        <div className="home-clean">
             {/* HERO SECTION */}
-            <section className="hero-editorial">
-                <div className="hero-overlay"></div>
+            <section className="hero-clean">
                 <div className="hero-content">
-                    <span className="hero-badge">Est. 2024 — Santiago, Chile</span>
-                    <h1 className="hero-title">BASKETBALL<br />HERITAGE</h1>
-                    <p className="hero-subtitle">
-                        Colección curada de zapatillas y streetwear. <br />
-                        Piezas auténticas, nuevas y verified pre-loved.
-                    </p>
+                    <span className="hero-pretitle">Fall / Winter 2024</span>
+                    <h1 className="hero-title">HERITAGE<br />COLLECTION</h1>
                     <div className="hero-actions">
-                        <Link to="/zapatillas" className="btn btn-primary">Ver Colección</Link>
-                        <Link to="/drops" className="btn btn-outline">Próximos Drops</Link>
+                        <Link to="/zapatillas" className="btn btn-primary">Shop Footwear</Link>
+                        <Link to="/drops" className="btn btn-outline">View Drops</Link>
                     </div>
                 </div>
             </section>
 
-            {/* MANIFESTO / BRAND */}
-            <section className="manifesto-block container">
-                <div className="manifesto-text">
-                    <h2>Selected Street Goods</h2>
-                    <p>
-                        No vendemos hype. Vendemos historia. Cada par en Lukstore ha sido seleccionado
-                        por su relevancia cultural y su estado impecable.
-                    </p>
-                </div>
+            {/* MANIFESTO */}
+            <section className="manifesto-clean container">
+                <p>
+                    Lukstore curates exceptional footwear and apparel from the past and present.
+                    Authentic. Verified. Essential.
+                </p>
             </section>
 
-            {/* CATEGORIES GRID */}
-            <section className="categories-section container">
-                <div className="grid-categories">
-                    <Link to="/zapatillas" className="cat-tile" style={{ backgroundImage: "url('/assets/cat-basketball.png')" }}>
-                        <div className="cat-tile-content">
-                            <h3>Basketball</h3>
-                            <p>Retro & Performance</p>
-                        </div>
-                    </Link>
-                    <Link to="/hombre" className="cat-tile" style={{ backgroundImage: "url('/assets/cat-streetwear.png')" }}>
-                        <div className="cat-tile-content">
-                            <h3>Streetwear</h3>
-                            <p>Apparel & Accesorios</p>
-                        </div>
-                    </Link>
-                    <Link to="/drops" className="cat-tile" style={{ backgroundImage: "url('/assets/cat-drops.png')" }}>
-                        <div className="cat-tile-content">
-                            <h3>Drops</h3>
-                            <p>Limited Releases</p>
-                        </div>
-                    </Link>
-                </div>
+            {/* CATEGORIES - Clean Row */}
+            <section className="categories-clean container">
+                <Link to="/zapatillas" className="cat-link">
+                    <div className="cat-image-wrap">
+                        <img src="/assets/cat-basketball.png" alt="Basketball" />
+                    </div>
+                    <h3>Basketball</h3>
+                </Link>
+                <Link to="/hombre" className="cat-link">
+                    <div className="cat-image-wrap">
+                        <img src="/assets/cat-streetwear.png" alt="Streetwear" />
+                    </div>
+                    <h3>Streetwear</h3>
+                </Link>
+                <Link to="/drops" className="cat-link">
+                    <div className="cat-image-wrap">
+                        <img src="/assets/cat-drops.png" alt="Drops" />
+                    </div>
+                    <h3>Drops</h3>
+                </Link>
             </section>
 
             {/* NEW ARRIVALS */}
-            <section className="featured-section container">
-                <div className="section-header">
-                    <h2>NEW ARRIVALS</h2>
-                    <Link to="/zapatillas" className="btn-link">Ver Todo</Link>
+            <section className="products-clean container">
+                <div className="section-header-clean">
+                    <h2>Latest Arrivals</h2>
+                    <Link to="/zapatillas" className="link-underlined">View All</Link>
                 </div>
-                <div className="product-grid">
+                <div className="product-grid-clean">
                     {featuredProducts.slice(0, 4).map(product => (
                         <ProductCard key={product.id} {...product} />
                     ))}
                 </div>
             </section>
 
-            {/* BANNER / BREAK */}
-            <Link to="/nosotros" className="banner-sale-poster">
-                <h2>CULTURA REAL</h2>
-                <p>Conoce más sobre nuestra curaduría</p>
-                <span className="btn-sale">Sobre Lukstore</span>
-            </Link>
-
-            {/* PRE-LOVED */}
-            <section className="featured-section container" style={{ marginTop: '6rem' }}>
-                <div className="section-header">
-                    <h2>PRE-LOVED (USED)</h2>
-                    <Link to="/zapatillas" className="btn-link">Ver Usados</Link>
+            {/* BANNER - Typeset only */}
+            <section className="banner-clean">
+                <div className="container">
+                    <h2>Authentic Culture</h2>
+                    <Link to="/nosotros" className="btn btn-outline">About Us</Link>
                 </div>
-                <div className="product-grid">
+            </section>
+
+            {/* PRE LOVED */}
+            <section className="products-clean container">
+                <div className="section-header-clean">
+                    <h2>Pre-Loved Archive</h2>
+                    <Link to="/zapatillas" className="link-underlined">View All</Link>
+                </div>
+                <div className="product-grid-clean">
                     {usedProducts.slice(0, 4).map(product => (
                         <ProductCard key={product.id} {...product} />
                     ))}

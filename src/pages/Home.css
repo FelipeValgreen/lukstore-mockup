@@ -1,268 +1,219 @@
-/* Home.css - Premium Dark Redesign */
+/* Home.css - Clean Heritage */
 
-/* 1. HERO Editorial */
-.hero-editorial {
+/* 1. HERO Clean */
+.hero-clean {
     position: relative;
-    height: 90vh;
-    /* Full screen impact */
+    height: 80vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Left aligned typically looks cleaner */
     background-image: url('/assets/hero-street-editorial.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    /* Parallax feel */
     margin-bottom: 4rem;
+    padding-left: 10vw;
 }
 
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    /* Darken for text readability */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 1rem;
-}
-
-.hero-badge {
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 0.75rem;
-    color: var(--color-text);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.6rem 1.2rem;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(4px);
-}
-
-.hero-title {
-    font-size: 6rem;
-    /* Massive title */
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    color: #fff;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    max-width: 500px;
-    margin: 0 auto 3rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 400;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-}
-
-/* 2. MANIFESTO */
-.manifesto-block {
-    padding: 2rem 0 6rem;
-    text-align: center;
-}
-
-.manifesto-text h2 {
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
-    color: var(--color-text-secondary);
-}
-
-.manifesto-text p {
-    font-size: 2rem;
-    /* Big impact statement */
-    max-width: 900px;
-    margin: 0 auto;
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--color-text);
-}
-
-/* 3. CATEGORIES GRID - Bento Style */
-.categories-section {
-    margin-bottom: 8rem;
-}
-
-.grid-categories {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    height: 600px;
-    /* Fixed height for the grid */
-}
-
-.cat-tile {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-end;
-    padding: 2.5rem;
-    text-decoration: none;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-}
-
-/* Hover Zoom Effect */
-.cat-tile:hover {
-    border-color: var(--color-text);
-}
-
-.cat-tile::before {
+/* Optional: Subtle gradient only to make text readable/pop if image is busy, 
+   but for "clean" look, often white text on dark image or black text on light image is preferred. 
+   Assuming the hero image allows white text. */
+.hero-clean::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 60%);
-    transition: background 0.3s;
+    background: rgba(0, 0, 0, 0.2);
+    /* Very subtle tint */
 }
 
-.cat-tile-content {
+.hero-content {
     position: relative;
     z-index: 2;
+    max-width: 600px;
+    color: #fff;
+    /* Keeping white text on hero image usually safe */
 }
 
-.cat-tile h3 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+.hero-pretitle {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 0.95;
+    font-weight: 800;
+    margin-bottom: 2rem;
     color: #fff;
 }
 
-.cat-tile p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+.hero-actions {
+    display: flex;
+    gap: 1rem;
 }
 
-/* 4. FEATURED / PRODUCT GRID */
-.featured-section {
+/* Override btn-primary for Hero context (needs to be white on dark img perhaps?)
+   Or keep global black/white. If global is black button, it might clash on dark hero.
+   Let's force hero buttons to be specific */
+.hero-clean .btn-primary {
+    background-color: #fff;
+    color: #000;
+}
+
+.hero-clean .btn-primary:hover {
+    background-color: #ddd;
+}
+
+.hero-clean .btn-outline {
+    border-color: #fff;
+    color: #fff;
+}
+
+.hero-clean .btn-outline:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* 2. MANIFESTO */
+.manifesto-clean {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.manifesto-clean p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+/* 3. CATEGORIES Clean */
+.categories-clean {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
     margin-bottom: 6rem;
 }
 
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 2.5rem;
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1rem;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    color: var(--color-text);
-}
-
-.btn-link {
-    color: var(--color-text-secondary);
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s;
-}
-
-.btn-link:hover {
-    color: var(--color-text);
-    border-bottom-color: var(--color-text);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-}
-
-/* 5. BANNER POSTER */
-.banner-sale-poster {
+.cat-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    background-color: var(--color-bg-secondary);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 8rem 2rem;
-    text-decoration: none;
-    margin: 4rem 0;
-    transition: background 0.3s;
+    group: cat;
 }
 
-.banner-sale-poster:hover {
-    background-color: #222;
-}
-
-.banner-sale-poster h2 {
-    font-size: 5rem;
+.cat-image-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
     margin-bottom: 1rem;
-    color: var(--color-text);
+    background-color: #f4f4f4;
 }
 
-.banner-sale-poster p {
-    font-size: 1.2rem;
-    color: var(--color-text-secondary);
+.cat-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.cat-link:hover .cat-image-wrap img {
+    transform: scale(1.05);
+}
+
+.cat-link h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+/* 4. PRODUCTS */
+.products-clean {
+    margin-bottom: 6rem;
+}
+
+.section-header-clean {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     margin-bottom: 2rem;
 }
 
-.btn-sale {
-    padding: 1rem 3rem;
-    border: 1px solid var(--color-text);
-    color: var(--color-text);
+.section-header-clean h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.link-underlined {
+    font-size: 0.8rem;
     text-transform: uppercase;
-    font-weight: 700;
     letter-spacing: 0.1em;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.product-grid-clean {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    /* Airy gap */
+}
+
+/* 5. BANNER Clean */
+.banner-clean {
+    background-color: #F8F8F8;
+    padding: 6rem 0;
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.banner-clean h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .product-grid {
+    .product-grid-clean {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .hero-title {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-editorial {
-        height: 70vh;
+    .hero-clean {
+        padding-left: 0;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .categories-clean {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .cat-image-wrap {
+        aspect-ratio: 16/9;
+        /* Wider on mobile */
     }
 
     .hero-title {
-        font-size: 3rem;
-    }
-
-    .grid-categories {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-
-    .cat-tile {
-        height: 300px;
-    }
-
-    .banner-sale-poster h2 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
