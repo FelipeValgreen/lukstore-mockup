@@ -1,8 +1,29 @@
--- Seed data for products table
--- Run this in your Supabase SQL Editor
+-- Create products table
+CREATE TABLE IF NOT EXISTS products (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    price NUMERIC NOT NULL,
+    original_price NUMERIC,
+    image TEXT NOT NULL,
+    category TEXT NOT NULL,
+    size TEXT[] NOT NULL,
+    condition TEXT DEFAULT 'new',
+    is_drop BOOLEAN DEFAULT FALSE,
+    description TEXT,
+    discount NUMERIC
+);
 
-insert into products (id, title, price, original_price, image, category, size, condition, is_drop, description, discount)
-values
+-- Enable Row Level Security
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+
+-- Create Policy for Public Read Access
+CREATE POLICY "Public Read Access"
+ON products FOR SELECT
+USING (true);
+
+-- Insert Seed Data
+INSERT INTO products (id, title, price, original_price, image, category, size, condition, is_drop, description, discount)
+VALUES
   ('j1-high-bred', 'Air Jordan 1 Retro High OG ''Bred''', 199990, null, '/assets/prod-jordan1.png', 'Basketball', ARRAY['8', '9', '10', '11'], 'new', true, 'El clásico que lo inició todo. Cuero premium, colores icónicos.', null),
   ('j4-cement', 'Air Jordan 4 Retro ''White Cement''', 361200, null, '/assets/prod-jordan4.png', 'Basketball', ARRAY['9', '10'], 'new', false, 'Diseño atemporal de Tinker Hatfield. Malla lateral y soporte.', null),
   ('j1-low-black-toe', 'Air Jordan 1 Low ''Black Toe''', 126990, null, '/assets/prod-jordan1.png', 'Streetwear', ARRAY['7', '8', '9', '10'], 'new', false, 'Perfil bajo para el día a día. Comodidad y estilo heritage.', null),
@@ -17,4 +38,4 @@ values
   ('am-1-pro-green', 'Air Max 1 ''Pro Green''', 194990, null, '/assets/prod-airmax.png', 'Streetwear', ARRAY['9', '10.5'], 'new', false, null, null),
   ('j8-retro', 'Air Jordan 8 Retro', 352117, null, '/assets/prod-jordan4.png', 'Basketball', ARRAY['10'], 'new', false, null, null),
   ('j1-mid-se', 'Air Jordan 1 Mid SE', 144990, null, '/assets/prod-jordan1.png', 'Streetwear', ARRAY['8.5', '9'], 'new', false, null, null)
-on conflict (id) do nothing;
+ON CONFLICT (id) DO NOTHING;

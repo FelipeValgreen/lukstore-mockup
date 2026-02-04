@@ -1,21 +1,18 @@
-/* Home.css - Editorial Redesign */
+/* Home.css - Premium Dark Redesign */
 
 /* 1. HERO Editorial */
 .hero-editorial {
     position: relative;
-    height: 85vh;
-    /* Large impactful hero */
+    height: 90vh;
+    /* Full screen impact */
     display: flex;
     align-items: center;
     justify-content: center;
     background-image: url('/assets/hero-street-editorial.png');
-    /* Needs a raw texture or street photo */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     /* Parallax feel */
-    color: var(--color-paper);
-    text-align: center;
     margin-bottom: 4rem;
 }
 
@@ -25,69 +22,54 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(14, 14, 14, 0.4);
-    /* Contrast overlay */
+    background: rgba(0, 0, 0, 0.4);
+    /* Darken for text readability */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
-    padding-top: 120px;
-    /* More air */
+    padding: 0 1rem;
+}
+
+.hero-badge {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(4px);
+}
+
+.hero-title {
+    font-size: 6rem;
+    /* Massive title */
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
 }
 
 .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin-top: 2rem;
-}
-
-.btn-secondary-outline {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background-color: transparent;
-    color: var(--color-paper);
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.8rem;
-    border: 1px solid var(--color-paper);
-    transition: all 0.3s ease;
-}
-
-.btn-secondary-outline:hover {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
-}
-
-.hero-badge {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.8rem;
-    border: 1px solid var(--color-paper);
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-}
-
-.hero-title {
-    font-size: 5rem;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-size: 1.1rem;
-    max-width: 500px;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    font-weight: 400;
 }
 
 /* 2. MANIFESTO */
@@ -97,33 +79,34 @@
 }
 
 .manifesto-text h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     margin-bottom: 1rem;
-}
-
-.manifesto-text p {
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto 2rem;
     color: var(--color-text-secondary);
 }
 
-.manifesto-icon {
-    width: 40px;
-    height: auto;
-    opacity: 0.8;
+.manifesto-text p {
+    font-size: 2rem;
+    /* Big impact statement */
+    max-width: 900px;
+    margin: 0 auto;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-text);
 }
 
-/* 3. Categories - Clean Grid */
+/* 3. CATEGORIES GRID - Bento Style */
 .categories-section {
-    margin-bottom: 6rem;
+    margin-bottom: 8rem;
 }
 
 .grid-categories {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    height: 400px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    height: 600px;
+    /* Fixed height for the grid */
 }
 
 .cat-tile {
@@ -133,10 +116,15 @@
     background-repeat: no-repeat;
     display: flex;
     align-items: flex-end;
-    padding: 1.5rem;
+    padding: 2.5rem;
     text-decoration: none;
-    transition: transform 0.3s ease;
     overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+/* Hover Zoom Effect */
+.cat-tile:hover {
+    border-color: var(--color-text);
 }
 
 .cat-tile::before {
@@ -146,232 +134,135 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-    transition: opacity 0.3s ease;
-}
-
-.cat-tile h3 {
-    position: relative;
-    z-index: 2;
-    color: white;
-    font-size: 1.5rem;
-    line-height: 1;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-}
-
-.cat-tile p {
-    position: relative;
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.85rem;
-    line-height: 1.3;
-    max-width: 90%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 60%);
+    transition: background 0.3s;
 }
 
 .cat-tile-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.cat-tile:hover {
-    transform: translateY(-5px);
-}
-
-/* Editorial Banner (CSS-only for sharpness) */
-.banner-editorial {
-    display: block;
-    background-color: var(--color-ink);
-    background-image: url('/assets/banner-drops.png');
-    background-size: cover;
-    background-position: center;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    position: relative;
-    border: 1px solid var(--color-ink);
-}
-
-.banner-editorial::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.banner-content {
     position: relative;
     z-index: 2;
-    text-align: center;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 2.5rem 5rem;
-    backdrop-filter: blur(2px);
 }
 
-.banner-label {
-    display: block;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
+.cat-tile h3 {
+    font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
-/* Summer Sale Poster Banner */
-.banner-sale-poster {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-color: #e5e5e5;
-    /* Cement color */
-    color: var(--color-ink);
-    /* Black text */
-    padding: 4rem 2rem;
-    border: 1px solid var(--color-ink);
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.banner-sale-poster:hover {
-    transform: scale(0.995);
-}
-
-/* Raw/Paper texture effect overlay */
-.banner-sale-poster::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-    pointer-events: none;
-}
-
-.banner-sale-poster h2 {
-    font-size: 4rem;
-    line-height: 0.9;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-}
-
-.banner-sale-poster p {
-    font-size: 1.1rem;
-    font-weight: 500;
+.cat-tile p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 0.2rem;
 }
 
-.btn-sale {
-    background: var(--color-ink);
-    color: white;
-    padding: 1rem 2.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-}
-
-.btn-link {
-    color: white;
-    text-decoration: underline;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 0.8rem;
-    margin-top: 1rem;
-}
-
-/* 4. FEATURED */
+/* 4. FEATURED / PRODUCT GRID */
 .featured-section {
     margin-bottom: 6rem;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-@media (max-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 1rem;
 }
 
 .section-header h2 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    color: var(--color-text);
 }
 
-.link-arrow {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+.btn-link {
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
 }
 
-/* 5. FOOTER CTA */
-.footer-cta-editorial {
-    background-color: var(--color-cement);
-    padding: 6rem 0;
+.btn-link:hover {
+    color: var(--color-text);
+    border-bottom-color: var(--color-text);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* 5. BANNER POSTER */
+.banner-sale-poster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-top: auto;
+    background-color: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 8rem 2rem;
+    text-decoration: none;
+    margin: 4rem 0;
+    transition: background 0.3s;
 }
 
-.footer-cta-editorial h2 {
-    font-size: 3rem;
+.banner-sale-poster:hover {
+    background-color: #222;
+}
+
+.banner-sale-poster h2 {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.banner-sale-poster p {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
     margin-bottom: 2rem;
-    color: var(--color-ink);
+}
+
+.btn-sale {
+    padding: 1rem 3rem;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .hero-editorial {
+        height: 70vh;
+    }
+
     .hero-title {
         font-size: 3rem;
     }
 
-    .categories-editorial {
+    .grid-categories {
         grid-template-columns: 1fr;
         height: auto;
     }
 
-    .cat-column {
-        height: 500px;
+    .cat-tile {
+        height: 300px;
     }
 
-    .cat-card.big {
-        height: 400px;
+    .banner-sale-poster h2 {
+        font-size: 3rem;
     }
 }

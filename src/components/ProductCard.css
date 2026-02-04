@@ -1,104 +1,65 @@
 .product-card {
     display: block;
     position: relative;
-    /* transition group handled via nested selectors */
+    text-decoration: none;
 }
 
 .product-image-container {
     position: relative;
-    background-color: var(--color-cement);
-    /* Specific neutral bg */
+    background-color: var(--color-bg-secondary);
     aspect-ratio: 4/5;
-    /* Fashion/Editorial standard */
     overflow: hidden;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.product-card:hover .product-image-container {
+    border-color: var(--color-border);
 }
 
 .product-image {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     object-fit: contain;
-    /* Keeps the whole shoe visible */
-    padding: 1.5rem;
-    /* More air */
-    transition: transform 0.5s ease;
-    mix-blend-mode: multiply;
-    /* Helps integrate white bg images onto grey */
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.08));
-    /* Real shadow integration */
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* No mix-blend-mode for dark theme - assuming transparent PNGs */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.05);
-    /* Slower, more elegant zoom */
+    transform: scale(1.08) translateY(-5px);
 }
 
 .card-badges {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 10px;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 8px;
-}
-
-
-.card-isotype {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 24px;
-    height: 24px;
-    opacity: 0.15;
-    pointer-events: none;
-    mix-blend-mode: multiply;
-    transition: opacity 0.3s ease;
-}
-
-.product-card:hover .card-isotype {
-    opacity: 0.4;
-}
-
-.card-isotype img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    gap: 5px;
 }
 
 .badge {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 0.35rem 0.6rem;
-    /* Slightly bigger padding */
-    letter-spacing: 0.05em;
-    color: var(--color-ink);
-    background-color: transparent;
-    border: 1px solid var(--color-ink);
-    /* Clean outlined look from manual */
+    padding: 0.4rem 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
 }
 
-/* Specific variants if needed, but manual suggests minimal/clean */
 .badge-drop {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
 }
-
-.badge-new {
-    /* Inherit outlined style */
-}
-
-.badge-used {
-    border-color: #555;
-    color: #555;
-}
-
 
 .product-info {
     text-align: left;
@@ -108,29 +69,30 @@
     color: var(--color-text-secondary);
     font-size: 0.7rem;
     text-transform: uppercase;
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.1em;
     font-weight: 600;
 }
 
 .product-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--color-ink);
-    line-height: 1.2;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+    line-height: 1.3;
     text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 
 .price-row {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
 }
 
 .product-price {
     font-size: 0.9rem;
-    color: var(--color-ink-light);
+    color: var(--color-text);
     font-weight: 500;
 }
 
@@ -138,5 +100,4 @@
     font-size: 0.8rem;
     color: var(--color-text-secondary);
     text-decoration: line-through;
-    opacity: 0.7;
 }
