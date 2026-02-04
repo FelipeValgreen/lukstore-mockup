@@ -1,12 +1,11 @@
 import React from 'react';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import './Institutional.css';
 
 const About = () => {
-    usePageMeta('Cultura Real', 'Manifiesto de Lukstore. Menos hype, más criterio. Streetwear seleccionado uno a uno.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Cultura Real" description="Manifiesto de Lukstore. Menos hype, más criterio. Streetwear seleccionado uno a uno." />
             <div className="kp-hero" style={{ backgroundImage: 'url(/assets/hero-about.png)' }}>
                 <div className="kp-overlay"></div>
                 <h1>Cultura Real</h1>

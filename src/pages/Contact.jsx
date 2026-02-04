@@ -1,13 +1,12 @@
 import React from 'react';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import { MessageCircle } from 'lucide-react';
 import './Institutional.css';
 
 const Contact = () => {
-    usePageMeta('Contacto', 'Habla con nosotros. Dudas, ventas o colaboraciones.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Contacto" description="Habla con nosotros. Dudas, ventas o colaboraciones." />
             <div className="container" style={{ padding: '6rem 0' }}>
                 <div className="contact-grid">
                     <div className="contact-info">

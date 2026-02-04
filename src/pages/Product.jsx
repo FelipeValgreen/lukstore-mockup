@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { PageMeta } from '../hooks/usePageMeta';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { useProducts } from '../hooks/useProducts';
@@ -20,7 +21,7 @@ const Product = () => {
     }, [id, products, loading, getProductById]);
 
     if (loading) return <div style={{ height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Cargando producto...</div>;
-    if (!product) return <div style={{ padding: '4rem', textAlign: 'center' }}>Producto no encontrado. <a href="/">Volver al inicio</a></div>;
+    if (!product) return <div style={{ padding: '4rem', textAlign: 'center' }}>Producto no encontrado. <Link to="/">Volver al inicio</Link></div>;
 
     const handleAddToCart = () => {
         if (!selectedSize) {
@@ -30,13 +31,17 @@ const Product = () => {
         addToCart(product, selectedSize);
     };
 
-    // Mock Related Data (filtering from verified loaded products)
+    // Filtramos productos relacionados por categoría
     const RELATED = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
 
     return (
         <div className="product-page">
+            <PageMeta
+                title={product.title}
+                description={`Compra ${product.title} en Lukstore. ${product.condition === 'new' ? 'Nuevo' : 'Pre-Loved'} y autenticado.`}
+            />
+
             <div className="container product-main">
-                {/* Left: Gallery */}
                 {/* Left: Gallery */}
                 <div className="product-gallery">
                     <div className="main-image">
@@ -48,7 +53,7 @@ const Product = () => {
                 {/* Right: Info */}
                 <div className="product-details">
                     <div className="p-header">
-                        <span className="p-brand">Jordan Brand</span>
+                        <span className="p-brand">Jordan Brand / Nike</span>
                         <h1 className="p-title">{product.title}</h1>
                         <p className="p-price">
                             ${product.price}
@@ -67,7 +72,7 @@ const Product = () => {
                     <div className="size-selector">
                         <div className="size-header">
                             <label>Seleccionar Talla (US)</label>
-                            <a href="/guia-de-tallas" className="size-guide-link">Guía de tallas</a>
+                            <Link to="/guia-tallas" className="size-guide-link">Guía de tallas</Link>
                         </div>
                         <div className="size-options">
                             {['7', '8', '8.5', '9', '10', '11'].map(s => (
@@ -83,7 +88,7 @@ const Product = () => {
                     </div>
 
                     <div className="p-actions">
-                        <button className="btn btn-primary btn-block" onClick={handleAddToCart}>Agregar al carrito</button>
+                        <button className="btn btn-primary btn-block" onClick={handleAddToCart}>AGREGAR AL CARRITO</button>
                         <p className="shipping-note">Envío gratis a todo Chile en compras sobre $100.000</p>
                     </div>
 
@@ -93,7 +98,7 @@ const Product = () => {
                             <span className="icon">🛡️</span>
                             <div className="text">
                                 <strong>Autenticidad Garantizada</strong>
-                                <p>Todos nuestros productos son revisados y seleccionados antes de ser publicados. La información entregada busca ayudarte a tomar una decisión informada.</p>
+                                <p>Todos nuestros productos son revisados y seleccionados antes de ser publicados.</p>
                             </div>
                         </div>
                         <div className="service-item">
