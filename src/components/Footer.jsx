@@ -28,6 +28,7 @@ const Footer = () => {
                     <div className="footer-col">
                         <h5>Soporte</h5>
                         <ul className="footer-links">
+                            <li><Link to="/faq">Preguntas Frecuentes</Link></li>
                             <li><Link to="/envios">Envíos y Devoluciones</Link></li>
                             <li><Link to="/guia-tallas">Guía de Tallas</Link></li>
                             <li><Link to="/tracking">Seguimiento de Pedido</Link></li>

@@ -15,6 +15,7 @@ import Checkout from './pages/Checkout';
 import Success from './pages/Success';
 import Search from './pages/Search';
 import Category from './pages/Category';
+import Drops from './pages/Drops';
 
 // Institutional Pages
 import About from './pages/About';
@@ -27,6 +28,10 @@ import Authenticity from './pages/Support/Authenticity';
 import Legal from './pages/Support/Legal';
 import Admin from './pages/Admin';
 import Tracking from './pages/Tracking';
+import FAQ from './pages/Support/FAQ';
+import NotFound from './pages/NotFound';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
 
 function App() {
     return (
@@ -41,7 +46,7 @@ function App() {
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/zapatillas" element={<Category type="basketball" />} />
                         <Route path="/streetwear" element={<Category type="streetwear" />} />
-                        <Route path="/drops" element={<Category type="drops" />} />
+                        <Route path="/drops" element={<Drops />} />
                         {/* Aliases for better navigation feel */}
                         <Route path="/hombre" element={<Category type="streetwear" />} />
                         <Route path="/mujer" element={<Category type="streetwear" />} />
@@ -60,9 +65,16 @@ function App() {
                         <Route path="/terminos" element={<Legal />} />
                         <Route path="/privacidad" element={<Legal />} />
 
+                        {/* Auth */}
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+
                         {/* Admin & Tools */}
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/tracking" element={<Tracking />} />
+                        <Route path="/faq" element={<FAQ />} />
+
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
                 <Footer />
