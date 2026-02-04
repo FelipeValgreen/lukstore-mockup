@@ -30,6 +30,7 @@ const Footer = () => {
                         <ul className="footer-links">
                             <li><Link to="/envios">Envíos y Devoluciones</Link></li>
                             <li><Link to="/guia-tallas">Guía de Tallas</Link></li>
+                            <li><Link to="/tracking">Seguimiento de Pedido</Link></li>
                             <li><Link to="/autenticidad">Garantía de Autenticidad</Link></li>
                             <li><Link to="/contacto">Contáctanos</Link></li>
                         </ul>
