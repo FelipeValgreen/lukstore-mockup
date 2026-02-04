@@ -1,52 +1,63 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, MessageCircle, Music2 } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="container footer-grid">
-                {/* Col 1: Brand */}
-                <div className="footer-col brand-col">
-                    <div className="footer-brand">
-                        <img src="/assets/logo-badge.png" alt="LUKSTORE" className="footer-logo-img" />
-                        <p className="footer-tagline">SELECTED STREET GOODS</p>
+        <footer className="footer-premium">
+            <div className="container">
+                <div className="footer-top">
+                    <div className="footer-col brand-col">
+                        <h4 className="footer-logo">LUKSTORE</h4>
                         <p className="footer-desc">
-                            Zapatillas y streetwear auténtico. <br />Sin fechas falsas, solo cultura.
+                            Curated streetwear and vintage essentials.
+                            Authenticated in Chile, shipped worldwide.
                         </p>
                     </div>
-                </div>
 
-                {/* Col 2: Ayuda */}
-                <div className="footer-col links-col">
-                    <h4>Ayuda</h4>
-                    <ul>
-                        <li><Link to="/guia-tallas">Guía de tallas</Link></li>
-                        <li><Link to="/envios">Envíos y devoluciones</Link></li>
-                        <li><Link to="/autenticidad">Autenticidad</Link></li>
-                        <li><Link to="/contacto">Contacto</Link></li>
-                    </ul>
-                </div>
+                    <div className="footer-col">
+                        <h5>Shop</h5>
+                        <ul className="footer-links">
+                            <li><Link to="/zapatillas">Footwear</Link></li>
+                            <li><Link to="/hombre">Apparel</Link></li>
+                            <li><Link to="/drops">Exclusive Drops</Link></li>
+                            <li><Link to="/accesorios">Accessories</Link></li>
+                        </ul>
+                    </div>
 
-                {/* Col 3: Socials */}
-                <div className="footer-col social-col">
-                    <div className="socials-list">
-                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                            <MessageCircle size={18} /> <span>WHATSAPP</span>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                            <Instagram size={18} /> <span>INSTAGRAM</span>
-                        </a>
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                            <Music2 size={18} /> <span>TIKTOK</span>
-                        </a>
+                    <div className="footer-col">
+                        <h5>Support</h5>
+                        <ul className="footer-links">
+                            <li><Link to="/envios">Shipping & Returns</Link></li>
+                            <li><Link to="/guia-tallas">Size Guide</Link></li>
+                            <li><Link to="/autenticidad">Authenticity Guarantee</Link></li>
+                            <li><Link to="/contacto">Contact Us</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer-col newsletter-col">
+                        <h5>Stay in the loop</h5>
+                        <p className="newsletter-text">Subscribe for exclusive drops and early access.</p>
+                        <form className="newsletter-form">
+                            <input type="email" placeholder="Email address" />
+                            <button type="submit" className="btn-arrow">→</button>
+                        </form>
+                        <div className="social-links">
+                            <a href="#" aria-label="Instagram">IG</a>
+                            <a href="#" aria-label="TikTok">TK</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="footer-bottom container">
-                <p className="copyright">LUKSTORE © {new Date().getFullYear()} — SANTIAGO, CHILE</p>
+                <div className="footer-bottom">
+                    <div className="copyright">
+                        © {new Date().getFullYear()} Lukstore. All rights reserved.
+                    </div>
+                    <div className="legal-links">
+                        <Link to="/terminos">Terms</Link>
+                        <Link to="/privacidad">Privacy</Link>
+                    </div>
+                </div>
             </div>
         </footer>
     );
