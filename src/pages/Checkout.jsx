@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { supabase } from '../supabase';
 import './Cart.css'; // Reusing Cart styles for layout
 
 const Checkout = () => {
@@ -32,13 +33,53 @@ const Checkout = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate API call
-        setTimeout(() => {
-            clearCart();
-            navigate('/success');
-        }, 1500);
+
+        try {
+            // 1. Create Order
+            const { data: orderData, error: orderError } = await supabase
+                .from('orders')
+                .insert([{
+                    customer_name: `${formData.firstName} ${formData.lastName}`,
+                    customer_email: formData.email,
+                    customer_address: formData.address,
+                    customer_city: formData.city,
+                    customer_region: formData.region,
+                    total_amount: cartTotal,
+                    status: 'paid', // Simulate successful payment
+                    payment_method: 'mercadopago'
+                }])
+                .select()
+                .single();
+
+            if (orderError) throw orderError;
+
+            // 2. Create Order Items
+            if (orderData) {
+                const orderItems = cartItems.map(item => ({
+                    order_id: orderData.id,
+                    product_id: item.id,
+                    product_title: item.title,
+                    quantity: item.quantity,
+                    price_at_purchase: parseInt(String(item.price).replace(/\./g, ''))
+                }));
+
+                const { error: itemsError } = await supabase
+                    .from('order_items')
+                    .insert(orderItems);
+
+                if (itemsError) throw itemsError;
+
+                // 3. Clear & Redirect
+                clearCart();
+                navigate('/success', { state: { orderId: orderData.id } });
+            }
+
+        } catch (error) {
+            console.error('Error creating order:', error);
+            alert('Hubo un error al procesar tu pedido. Por favor intenta nuevamente.');
+        }
     };
 
     return (

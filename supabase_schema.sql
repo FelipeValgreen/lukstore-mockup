@@ -39,4 +39,44 @@ values
   ('am-flight-court', 'Jordan Flight Court', 70990, 85000, '/assets/prod-jordan4.png', 'Basketball', ARRAY['8', '9'], 'new', false, null, 15),
   ('am-1-pro-green', 'Air Max 1 ''Pro Green''', 194990, null, '/assets/prod-airmax.png', 'Streetwear', ARRAY['9', '10.5'], 'new', false, null, null),
   ('j8-retro', 'Air Jordan 8 Retro', 352117, null, '/assets/prod-jordan4.png', 'Basketball', ARRAY['10'], 'new', false, null, null),
-  ('j1-mid-se', 'Air Jordan 1 Mid SE', 144990, null, '/assets/prod-jordan1.png', 'Streetwear', ARRAY['8.5', '9'], 'new', false, null, null);
+
+-- 5. Create Orders Table
+create table orders (
+  id uuid default gen_random_uuid() primary key,
+  customer_name text not null,
+  customer_email text not null,
+  customer_address text not null,
+  customer_city text not null,
+  customer_region text not null,
+  total_amount numeric not null,
+  status text default 'pending' check (status in ('pending', 'paid', 'shipped')),
+  payment_method text default 'mercadopago',
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- 6. Create Order Items Table
+create table order_items (
+  id uuid default gen_random_uuid() primary key,
+  order_id uuid references orders(id) on delete cascade,
+  product_id text references products(id),
+  product_title text not null,
+  quantity integer not null,
+  price_at_purchase numeric not null
+);
+
+-- Enable RLS for Orders (Public insert, Private select/update for now, or just public for demo)
+alter table orders enable row level security;
+alter table order_items enable row level security;
+
+create policy "Anyone can create orders"
+  on orders for insert
+  with check ( true );
+
+create policy "Anyone can create order items"
+  on order_items for insert
+  with check ( true );
+
+-- Consider allowing users to read their own orders if we had auth, but for guest checkout:
+create policy "Public read orders (demo)"
+  on orders for select
+  using ( true ); 
