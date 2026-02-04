@@ -65,19 +65,25 @@
 }
 
 /* FIX: Absolute positioning for the isotype watermark */
+/* FIX: Absolute positioning (FORCED) */
 .card-isotype {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    opacity: 0.05;
-    /* Subtle watermark */
-    pointer-events: none;
-    z-index: 0;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card-isotype img {
+    width: 60%;
+    height: auto;
+    object-fit: contain;
 }
 
 .card-isotype img {
