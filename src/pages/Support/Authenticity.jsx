@@ -11,7 +11,7 @@ const Authenticity = () => {
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Autenticidad</h1>
 
                 <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#111' }}>
-                    Todos los productos publicados en Lukstore son revisados antes de ser puestos a la venta. Nuestro proceso busca entregar información clara y transparente para ayudarte a tomar una decisión informada.
+                    Todos los productos publicados en Lukstore son revisados antes de ser puestos a la venta. La información entregada busca ayudarte a tomar una decisión informada.
                 </p>
             </div>
         </div>

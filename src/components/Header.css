@@ -129,6 +129,10 @@
     .mobile-menu-btn {
         display: block;
     }
+
+    .logo-img {
+        height: 24px;
+    }
 }
 
 @keyframes fadeIn {

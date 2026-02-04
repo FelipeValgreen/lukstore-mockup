@@ -35,6 +35,7 @@ const ProductCard = ({ id, image, title, price, category, condition, discount, o
                     <p className="product-price">${price}</p>
                     {originalPrice && <p className="product-price-original">${originalPrice}</p>}
                 </div>
+                <button className="btn-view-product">Ver producto</button>
             </div>
         </Link>
     );

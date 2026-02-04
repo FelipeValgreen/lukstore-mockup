@@ -109,7 +109,7 @@ const Product = () => {
                             <div className="info-item" style={{ padding: '1rem 0', borderBottom: '1px solid #eee' }}>
                                 <h4 style={{ fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: 600 }}>Autenticidad</h4>
                                 <p style={{ fontSize: '0.8rem', color: '#666' }}>
-                                    Todos nuestros productos son revisados antes de ser publicados. La información entregada busca ayudarte a tomar una decisión informada.
+                                    Todos los productos publicados en Lukstore son revisados antes de ser puestos a la venta. La información entregada busca ayudarte a tomar una decisión informada.
                                 </p>
                             </div>
                         </div>

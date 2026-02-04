@@ -1,6 +1,5 @@
-
 -- 1. Create the products table
-create table products (
+create table if not exists products (
   id text primary key,
   title text not null,
   price numeric not null,
@@ -19,11 +18,13 @@ create table products (
 alter table products enable row level security;
 
 -- 3. Create a policy that allows anyone to read products
+drop policy if exists "Public products are viewable by everyone" on products;
 create policy "Public products are viewable by everyone"
   on products for select
   using ( true );
 
 -- 4. Seed data from current mock products (src/data/products.js)
+-- Use ON CONFLICT DO NOTHING to avoid duplicate key errors
 insert into products (id, title, price, original_price, image, category, size, condition, is_drop, description, discount)
 values
   ('j1-high-bred', 'Air Jordan 1 Retro High OG ''Bred''', 199990, null, '/assets/prod-jordan1.png', 'Basketball', ARRAY['8', '9', '10', '11'], 'new', true, 'El clásico que lo inició todo. Cuero premium, colores icónicos.', null),
@@ -39,9 +40,11 @@ values
   ('am-flight-court', 'Jordan Flight Court', 70990, 85000, '/assets/prod-jordan4.png', 'Basketball', ARRAY['8', '9'], 'new', false, null, 15),
   ('am-1-pro-green', 'Air Max 1 ''Pro Green''', 194990, null, '/assets/prod-airmax.png', 'Streetwear', ARRAY['9', '10.5'], 'new', false, null, null),
   ('j8-retro', 'Air Jordan 8 Retro', 352117, null, '/assets/prod-jordan4.png', 'Basketball', ARRAY['10'], 'new', false, null, null),
+  ('j1-mid-se', 'Air Jordan 1 Mid SE', 144990, null, '/assets/prod-jordan1.png', 'Streetwear', ARRAY['8.5', '9'], 'new', false, null, null)
+on conflict (id) do nothing;
 
 -- 5. Create Orders Table
-create table orders (
+create table if not exists orders (
   id uuid default gen_random_uuid() primary key,
   customer_name text not null,
   customer_email text not null,
@@ -55,7 +58,7 @@ create table orders (
 );
 
 -- 6. Create Order Items Table
-create table order_items (
+create table if not exists order_items (
   id uuid default gen_random_uuid() primary key,
   order_id uuid references orders(id) on delete cascade,
   product_id text references products(id),
@@ -68,15 +71,18 @@ create table order_items (
 alter table orders enable row level security;
 alter table order_items enable row level security;
 
+drop policy if exists "Anyone can create orders" on orders;
 create policy "Anyone can create orders"
   on orders for insert
   with check ( true );
 
+drop policy if exists "Anyone can create order items" on order_items;
 create policy "Anyone can create order items"
   on order_items for insert
   with check ( true );
 
 -- Consider allowing users to read their own orders if we had auth, but for guest checkout:
+drop policy if exists "Public read orders (demo)" on orders;
 create policy "Public read orders (demo)"
   on orders for select
-  using ( true ); 
+  using ( true );

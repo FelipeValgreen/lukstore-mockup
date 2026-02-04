@@ -1,11 +1,17 @@
+// Add useNavigate hook importation at the top if not present, but since I am replacing the component body/part, I can't easily see imports.
+// Wait, I need to see if useNavigate is imported.
+// View file showed: import { Link } from 'react-router-dom'; (line 2)
+// I need to add useNavigate.
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Trash2, Plus, Minus, ArrowLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
 
 const Cart = () => {
     const { cartItems, cartTotal, removeFromCart, updateQuantity } = useCart();
+    const navigate = useNavigate();
 
     if (cartItems.length === 0) {
         return (
@@ -68,7 +74,7 @@ const Cart = () => {
                                 </div>
                             </div>
                             <div className="cart-item-price">
-                                ${(parseInt(item.price.replace(/\./g, '')) * item.quantity).toLocaleString('es-CL')}
+                                ${(parseInt(String(item.price).replace(/\./g, '')) * item.quantity).toLocaleString('es-CL')}
                             </div>
                         </div>
                     ))}
@@ -90,7 +96,10 @@ const Cart = () => {
                         <span>Total</span>
                         <span>${cartTotal.toLocaleString('es-CL')}</span>
                     </div>
-                    <button className="btn btn-primary btn-block checkout-btn">
+                    <button
+                        className="btn btn-primary btn-block checkout-btn"
+                        onClick={() => navigate('/checkout')}
+                    >
                         Finalizar compra
                     </button>
                     <Link to="/" className="continue-shopping">

@@ -133,3 +133,24 @@
     color: var(--color-text-secondary);
     text-decoration: line-through;
 }
+
+.btn-view-product {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-view-product:hover {
+    background: var(--color-text);
+    color: #fff;
+    border-color: var(--color-text);
+}

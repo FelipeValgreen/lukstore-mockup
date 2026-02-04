@@ -1,9 +1,8 @@
 .cat-hero {
     position: relative;
-    min-height: 40vh;
-    /* Allow growth */
-    padding: 4rem 1rem;
-    /* Add breathing room */
+    height: 300px;
+    /* Strict max height as requested */
+    padding: 0 1rem;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -13,7 +12,6 @@
     color: var(--color-paper);
     margin-bottom: 3rem;
     background-color: #1a1a1a;
-    /* Fallback */
 }
 
 /*... existing ...*/
@@ -24,7 +22,8 @@
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns as per directive */
     gap: 2rem;
 }
 
