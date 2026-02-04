@@ -88,12 +88,25 @@ const Checkout = () => {
                             </div>
                         </div>
 
+// ... existing code ...
                         <h3>Pago</h3>
-                        <div className="payment-mock">
-                            <div className="payment-option selected">
-                                <span>💳 Tarjeta de Crédito / Débito (Webpay)</span>
+                        <div className="payment-mock mp-payment">
+                            <div className="payment-header">
+                                <span style={{ color: '#009EE3', fontWeight: '800' }}>mercadopago</span>
                             </div>
-                            <p className="payment-note">Serás redirigido a la pasarela de pago segura al confirmar.</p>
+                            <div className="payment-option selected">
+                                <div className="mp-radio"></div>
+                                <span>Tarjetas (Crédito, Débito, Prepago)</span>
+                            </div>
+                            <div className="payment-logos">
+                                <span className="card-pill">Visa</span>
+                                <span className="card-pill">Mastercard</span>
+                                <span className="card-pill">Amex</span>
+                                <span className="card-pill">Mach</span>
+                            </div>
+                            <p className="payment-note">
+                                Estás en un servidor seguro. Al confirmar, serás redirigido a MercadoPago para completar la transacción.
+                            </p>
                         </div>
 
                     </form>
@@ -101,12 +114,13 @@ const Checkout = () => {
 
                 {/* Right: Summary Order */}
                 <div className="cart-summary">
+                    {/* ... (existing summary code) ... */}
                     <h2>Tu Pedido</h2>
                     <div className="order-items-preview">
                         {cartItems.map(item => (
                             <div key={`${item.id}-${item.size}`} className="order-preview-row">
                                 <span>{item.title} x {item.quantity}</span>
-                                <span>${(parseInt(item.price.replace(/\./g, '')) * item.quantity).toLocaleString('es-CL')}</span>
+                                <span>${(parseInt(String(item.price).replace(/\./g, '')) * item.quantity).toLocaleString('es-CL')}</span>
                             </div>
                         ))}
                     </div>
@@ -115,8 +129,8 @@ const Checkout = () => {
                         <span>Total a Pagar</span>
                         <span>${cartTotal.toLocaleString('es-CL')}</span>
                     </div>
-                    <button type="submit" form="checkoutForm" className="btn btn-primary btn-block">
-                        Confirmar Pedido
+                    <button type="submit" form="checkoutForm" className="btn btn-primary btn-block mp-btn">
+                        Pagar con MercadoPago
                     </button>
                     <Link to="/cart" className="continue-shopping" style={{ marginTop: '1rem' }}>
                         Volver al carrito
