@@ -29,6 +29,8 @@ const Product = () => {
             return;
         }
         addToCart(product, selectedSize);
+        // Navigate to cart for feedback
+        window.location.href = '/cart'; // Using window.location to force simple nav or navigate('/cart') if hook available
     };
 
     // Filtramos productos relacionados por categoría
@@ -56,7 +58,7 @@ const Product = () => {
                         <span className="p-brand">Jordan Brand / Nike</span>
                         <h1 className="p-title">{product.title}</h1>
                         <p className="p-price">
-                            ${product.price}
+                            {new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(product.price)}
                             {product.condition === 'used' && <span className="price-note"> (Pre-Loved)</span>}
                         </p>
                     </div>

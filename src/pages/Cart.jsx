@@ -74,7 +74,7 @@ const Cart = () => {
                                 </div>
                             </div>
                             <div className="cart-item-price">
-                                ${(parseInt(String(item.price).replace(/\./g, '')) * item.quantity).toLocaleString('es-CL')}
+                                {new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(item.price * item.quantity)}
                             </div>
                         </div>
                     ))}

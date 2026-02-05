@@ -5,51 +5,56 @@
 /* 1. HERO Clean */
 .hero-clean {
     position: relative;
-    height: 80vh;
+    height: 65vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* Left aligned typically looks cleaner */
     background-image: url('/assets/hero-street-editorial.png');
     background-size: cover;
     background-position: center;
-    margin-bottom: 2rem;
-    /* Reduced bottom margin to fit trust bar */
+    margin-bottom: 4rem;
     padding-left: 10vw;
+    color: #fff;
+    /* Ensure white text */
 }
 
-.hero-clean::before {
-    content: '';
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
     max-width: 600px;
-    color: #fff;
-}
-
-.hero-pretitle {
-    display: block;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 1rem;
-    opacity: 0.9;
 }
 
 .hero-title {
-    font-size: 4.5rem;
-    line-height: 0.95;
-    font-weight: 800;
-    margin-bottom: 2rem;
-    color: #fff;
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 1rem 1.5rem;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+    border-radius: 4px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-actions {
@@ -57,271 +62,65 @@
     gap: 1rem;
 }
 
-.hero-clean .btn-primary {
-    background-color: #fff;
-    color: #000;
-}
-
-.hero-clean .btn-primary:hover {
-    background-color: #ddd;
-}
-
-.hero-clean .btn-outline {
-    border-color: #fff;
-    color: #fff;
-}
-
-.hero-clean .btn-outline:hover {
-    background-color: #fff;
-    color: #000;
-}
-
-/* NEW: TRUST BAR */
-.trust-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: 4rem;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-secondary);
-}
-
-.separator {
-    color: #ddd;
-}
-
-/* 2. MANIFESTO */
-.manifesto-clean {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-.manifesto-clean p {
-    font-size: 1.8rem;
-    /* Larger for impact */
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.3;
-    font-weight: 400;
-    color: var(--color-text);
-    font-family: serif;
-    /* Adds that "Editorial" touch if implied, otherwise standard */
-}
-
-/* 3. CATEGORIES Clean */
-.categories-clean {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 6rem;
-}
-
-.cat-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    group: cat;
-}
-
-.cat-image-wrap {
-    width: 100%;
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    background-color: #f4f4f4;
-}
-
-.cat-image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.cat-link:hover .cat-image-wrap img {
-    transform: scale(1.05);
-}
-
-.cat-link h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin: 0;
-}
-
-/* 4. PRODUCTS */
-.products-clean {
-    margin-bottom: 6rem;
-}
-
-.section-header-clean {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 2rem;
-}
-
-.section-header-clean h2 {
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-.link-underlined {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    /* Airy gap */
-}
-
-/* 5. BANNER Clean */
-.banner-clean {
-    background-color: #F8F8F8;
-    padding: 6rem 0;
-    text-align: center;
-    margin-bottom: 6rem;
-}
-
-.banner-clean h2 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    letter-spacing: -0.02em;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero-title {
-        font-size: 3.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-clean {
-        padding-left: 0;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .categories-clean {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .cat-image-wrap {
-        aspect-ratio: 16/9;
-        /* Wider on mobile */
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    /* ... existing responsive ... */
-    .trust-bar {
-        font-size: 0.6rem;
-        flex-wrap: wrap;
-    }
-}
-
-/* --- NEW MASTER DIRECTIVE STYLES --- */
-
-/* 2. CATEGORIES 5-COL */
-.categories-grid-5 {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    margin-bottom: 6rem;
-}
-
-.cat-card-text a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem 1rem;
-    background: #f9f9f9;
-    height: 100%;
-    transition: all 0.3s ease;
-    text-align: center;
-    border: 1px solid transparent;
-}
-
-.cat-card-text a:hover {
-    background: #fff;
-    border-color: #000;
-    transform: translateY(-2px);
-}
-
-.cat-card-text h3 {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
-}
-
-.cat-card-text p {
-    font-size: 0.75rem;
-    color: #666;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* 4. BANNER SALE */
+/* 4. BANNER SALE (Refined) */
 .banner-sale {
     position: relative;
-    padding: 8rem 0;
+    padding: 10rem 0;
+    /* More breathing room */
     text-align: center;
     margin-bottom: 6rem;
-    background-color: #1a1a1a;
+    background-color: #f4f4f4;
     background-image: url('/assets/banner-sale.png');
     background-size: cover;
     background-position: center;
-    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Removed boxy background, moved to clean high-contrast text */
 .banner-content {
-    background: rgba(0, 0, 0, 0.4);
-    /* Backdrop for readability */
-    padding: 2rem;
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    padding: 0;
+    backdrop-filter: none;
+    border: none;
+    max-width: 800px;
 }
 
 .banner-content h2 {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 800;
+    font-size: 6rem;
+    /* Huge impact */
+    margin-bottom: 0;
+    /* Stacked look */
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+    color: #000;
+    /* Distinct Black on Texture */
 }
+
+/* Add a second line if needed or styling for "SALE" */
 
 .banner-content p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: #333;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.banner-content .btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 1rem 3rem;
+}
+
+.banner-content .btn:hover {
+    background: #333;
+    transform: translateY(-2px);
 }
 
 /* 6. FINAL CTA */
@@ -599,15 +398,18 @@
     /* Multicolored Google G generic mimic or just plain */
     background: conic-gradient(from -45deg, #ea4335 0deg 90deg, #34a853 90deg 180deg, #fbbc05 180deg 270deg, #4285f4 270deg 360deg);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
     /* Or just use an SVG if we had one */
 }
 
 /* Fallback for G icon visualization if gradient fails */
 .g-icon {
+    /* If gradient fails, at least show blue */
     color: #4285f4;
     background: none;
     -webkit-background-clip: border-box;
+    background-clip: border-box;
 }
 
 .g-rating {
@@ -708,6 +510,7 @@
     color: #4b4b4b;
     display: -webkit-box;
     -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

@@ -210,11 +210,23 @@ const Home = () => {
                     </div>
                     <div className="ig-grid">
                         {/* 9 Placeholder Images mimicking an IG feed */}
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-                            <a key={i} href="https://www.instagram.com/lukstore._/" target="_blank" rel="noreferrer" className="ig-item">
-                                <div className="ig-overlay"><span className="ig-icon">📸</span></div>
-                            </a>
-                        ))}
+                        {/* 9 Placeholder Images mimicking an IG feed */
+                            [
+                                '/assets/prod-jordan1.png',
+                                '/assets/prod-jordan4.png',
+                                '/assets/prod-airmax.png',
+                                '/assets/hero-home.png',
+                                '/assets/banner-sale.png',
+                                '/assets/cat-streetwear.png',
+                                '/assets/prod-jordan4-back.png',
+                                '/assets/jordan_4_cement_lifestyle.png',
+                                '/assets/cat-basketball.png'
+                            ].map((src, i) => (
+                                <a key={i} href="https://www.instagram.com/lukstore._/" target="_blank" rel="noreferrer" className="ig-item">
+                                    <img src={src} alt="Instagram Post" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <div className="ig-overlay"><span className="ig-icon">📸</span></div>
+                                </a>
+                            ))}
                     </div>
                 </div>
             </section>

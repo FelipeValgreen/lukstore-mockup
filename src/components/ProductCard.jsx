@@ -32,8 +32,14 @@ const ProductCard = ({ id, image, title, price, category, condition, discount, o
                 <p className="product-category">{category} {condition === 'used' ? '• Used' : ''}</p>
                 <h3 className="product-title">{title}</h3>
                 <div className="price-row">
-                    <p className="product-price">${price}</p>
-                    {originalPrice && <p className="product-price-original">${originalPrice}</p>}
+                    <p className="product-price">
+                        {new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(price)}
+                    </p>
+                    {originalPrice && (
+                        <p className="product-price-original">
+                            {new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(originalPrice)}
+                        </p>
+                    )}
                 </div>
                 <button className="btn-view-product">Ver producto</button>
             </div>
