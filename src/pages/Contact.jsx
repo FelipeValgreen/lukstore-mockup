@@ -1,13 +1,12 @@
 import React from 'react';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import { Mail, MessageCircle, Clock } from 'lucide-react';
 import './Institutional.css';
 
 const Contact = () => {
-    usePageMeta('Contacto', 'Escríbenos directamente.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Contacto" description="Escríbenos directamente." />
             <div className="container" style={{ padding: '6rem 0', maxWidth: '600px' }}>
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Contacto</h1>
                 <p style={{ fontSize: '1.1rem', color: '#666', marginBottom: '3rem' }}>

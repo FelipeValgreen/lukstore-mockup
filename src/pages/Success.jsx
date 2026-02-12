@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
-import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { PageMeta } from '../hooks/usePageMeta';
 
 const Success = () => {
-    useDocumentTitle('Compra Exitosa');
     const location = useLocation();
     const { orderId } = location.state || {}; // Get real ID
 
@@ -18,6 +17,7 @@ const Success = () => {
             textAlign: 'center',
             padding: '2rem'
         }}>
+            <PageMeta title="Compra Exitosa" description="Gracias por tu compra." />
             <CheckCircle size={64} color="#28a745" style={{ marginBottom: '1.5rem' }} />
             <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>¡Gracias por tu compra!</h1>
             <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '500px', marginBottom: '2rem' }}>

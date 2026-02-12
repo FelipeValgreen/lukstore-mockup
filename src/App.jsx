@@ -5,6 +5,8 @@ import { CartProvider } from './context/CartContext';
 // Components
 import Header from './components/Header';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
+import WhatsAppWidget from './components/WhatsAppWidget';
 import ScrollToTop from './components/ScrollToTop';
 
 // Pages
@@ -15,6 +17,7 @@ import Checkout from './pages/Checkout';
 import Success from './pages/Success';
 import Search from './pages/Search';
 import Category from './pages/Category';
+import ClusterPage from './pages/ClusterPage';
 import Drops from './pages/Drops';
 
 // Institutional Pages
@@ -44,16 +47,19 @@ function App() {
                 <ScrollToTop />
                 <main>
                     <Routes>
+                        {/* MASTER I.K.E.A STRUCTURE */}
                         <Route path="/" element={<Home />} />
-                        <Route path="/product/:id" element={<Product />} />
+
+                        {/* Deep Hierarchy Routes */}
+                        <Route path="/:category" element={<ClusterPage />} />
+                        <Route path="/:category/:brand" element={<ClusterPage />} />
+                        <Route path="/:category/:brand/:model" element={<ClusterPage />} />
+                        <Route path="/:category/:brand/:model/:slug" element={<Product />} />
+
+                        {/* Legacy/Utility Routes */}
+                        <Route path="/product/:id" element={<Product />} /> {/* Keep for backwards compat if needed */}
                         <Route path="/cart" element={<Cart />} />
-                        <Route path="/zapatillas" element={<Category type="basketball" />} />
-                        <Route path="/streetwear" element={<Category type="streetwear" />} />
                         <Route path="/drops" element={<Drops />} />
-                        {/* Aliases for better navigation feel */}
-                        <Route path="/hombre" element={<Category type="streetwear" />} />
-                        <Route path="/mujer" element={<Category type="streetwear" />} />
-                        <Route path="/accesorios" element={<Category type="drops" />} />
 
                         <Route path="/nosotros" element={<About />} />
                         <Route path="/contacto" element={<Contact />} />
@@ -83,6 +89,8 @@ function App() {
                     </Routes>
                 </main>
                 <Footer />
+                <CookieBanner />
+                <WhatsAppWidget />
             </div>
         </CartProvider>
     );

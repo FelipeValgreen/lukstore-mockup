@@ -1,12 +1,11 @@
 import React from 'react';
-import { usePageMeta } from '../../hooks/usePageMeta';
+import { PageMeta } from '../../hooks/usePageMeta';
 import '../../pages/Institutional.css';
 
 const Legal = () => {
-    usePageMeta('Términos y Privacidad', 'Bases legales de Lukstore.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Términos y Privacidad" description="Bases legales de Lukstore." />
             <div className="container" style={{ padding: '6rem 0' }}>
                 <h1 style={{ fontSize: '3rem', marginBottom: '3rem', textTransform: 'uppercase' }}>Legal</h1>
 

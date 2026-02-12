@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { PageMeta } from '../hooks/usePageMeta';
 import { supabase } from '../supabase';
 import './Cart.css'; // Reusing Cart styles for layout
 
 const Checkout = () => {
-    useDocumentTitle('Checkout');
+
     const navigate = useNavigate();
     const { cartItems, cartTotal, clearCart } = useCart();
 
@@ -84,6 +84,7 @@ const Checkout = () => {
 
     return (
         <div className="cart-page container"> {/* Reusing cart-page layout class for padding */}
+            <PageMeta title="Checkout" description="Finaliza tu compra de forma segura." />
             <h1 className="cart-title">Finalizar Compra</h1>
             <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#666' }}>Completa tus datos para finalizar tu pedido.</p>
 

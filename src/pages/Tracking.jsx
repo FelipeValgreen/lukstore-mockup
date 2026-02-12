@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabase';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import { Search, Package, Check, Truck, Home } from 'lucide-react';
 import './Institutional.css';
 
 const Tracking = () => {
-    usePageMeta('Seguimiento de Pedido', 'Rastrea el estado de tu compra en Lukstore.');
     const [orderId, setOrderId] = useState('');
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -69,6 +68,7 @@ const Tracking = () => {
 
     return (
         <div className="institutional-page">
+            <PageMeta title="Seguimiento de Pedido" description="Rastrea el estado de tu compra en Lukstore." />
             <div className="container" style={{ padding: '6rem 0', maxWidth: '600px', minHeight: '60vh' }}>
                 <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Seguimiento</h1>
 

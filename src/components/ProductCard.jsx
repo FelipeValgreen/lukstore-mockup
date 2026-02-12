@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
-const ProductCard = ({ id, image, title, price, category, condition, discount, originalPrice, isDrop }) => {
+const ProductCard = ({ id, image, title, price, category, condition, discount, originalPrice, isDrop, hierarchy, slug }) => {
     // The instruction implies that 'product' object is passed, and 'loading' state is managed.
     // For this change, we'll assume 'product' is available and 'loading' state is handled
     // by the parent or within the component (e.g., using useState).
@@ -12,8 +12,17 @@ const ProductCard = ({ id, image, title, price, category, condition, discount, o
     // We'll also need to add useState for 'loading' to make the provided snippet syntactically correct.
     const [loading, setLoading] = React.useState(true);
 
+    // IKEA-Style URL Generation
+    let productUrl = `/product/${id}`;
+    if (hierarchy && hierarchy.length >= 2 && slug) {
+        const cat = hierarchy[0].toLowerCase();
+        const brand = hierarchy[1].toLowerCase();
+        const model = hierarchy.length > 2 ? hierarchy[2].toLowerCase().replace(/ /g, '-') : 'general';
+        productUrl = `/${cat}/${brand}/${model}/${slug}`;
+    }
+
     return (
-        <Link to={`/product/${id}`} className="product-card">
+        <Link to={productUrl} className="product-card">
             <div className={`product-image-container ${loading ? 'loading' : ''}`}>
                 <img src={image} alt={title} className="product-image" onLoad={() => setLoading(false)} />
                 <div className="card-badges">

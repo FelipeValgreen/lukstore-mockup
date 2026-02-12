@@ -1,68 +1,82 @@
 import React, { useMemo } from 'react';
 import { useProducts } from '../hooks/useProducts';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import ProductCard from '../components/ProductCard';
-import { Clock } from 'lucide-react';
-import './Institutional.css';
+import { Clock, Flame, Bell } from 'lucide-react';
+import './Drops.css';
 
 const Drops = () => {
-    usePageMeta('Drops Exclusivos', 'Lanzamientos limitados y colaboraciones especiales en Lukstore.');
     const { getActiveDrops, loading } = useProducts();
+    // Force refresh of drops logic
     const drops = useMemo(() => getActiveDrops(), [getActiveDrops]);
 
     return (
-        <div className="institutional-page">
-            {/* Hero Section */}
-            <div className="kp-hero" style={{ height: '60vh', backgroundImage: 'url(/assets/hero-drops.png)', display: 'flex', alignItems: 'flex-end', paddingBottom: '4rem' }}>
-                <div className="kp-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}></div>
-                <div className="container" style={{ position: 'relative', zIndex: 2, color: 'white' }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#FF3B30', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 'bold', marginBottom: '1rem' }}>
-                        <Clock size={16} />
-                        <span>STOCK LIMITADO</span>
+        <div className="drops-page">
+            <PageMeta title="LUKSTORE DROPS | Lanzamientos Exclusivos" description="Acceso a lanzamientos limitados. Jordan 4, Travis Scott, Off-White. Compra antes que se agoten." />
+
+            {/* HERO SECTION */}
+            <section className="drops-hero" style={{ backgroundImage: 'url(/assets/banner-drops.png)' }}>
+                <div className="drops-overlay"></div>
+                <div className="drops-hero-content">
+                    <div className="drop-badge-hero">
+                        <Flame size={16} />
+                        <span>Hype Release Radar</span>
                     </div>
-                    <h1 style={{ fontSize: '4rem', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>Drops</h1>
-                    <p style={{ fontSize: '1.2rem', opacity: 0.9, maxWidth: '500px' }}>
-                        Selecciones y lanzamientos disponibles por tiempo limitado. Una vez que se van, no siempre vuelven.
+                    <h1 className="drops-title">Limited<br />Drops</h1>
+                    <p className="drops-subtitle">
+                        Acceso exclusivo a los pares más buscados. Stock limitado.
+                        <br />Cuando se van, se van para siempre.
                     </p>
                 </div>
-            </div>
+            </section>
 
-            {/* Active Drops Grid */}
-            <div className="container" style={{ padding: '4rem 0' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-                    <h2>Disponibles Ahora</h2>
-                    <span style={{ fontSize: '0.9rem', color: '#666' }}>{drops.length} lanzamientos activos</span>
+            {/* ACTIVE DROPS GRID */}
+            <div className="container">
+                <div className="drops-section-header">
+                    <h2 className="drops-section-title">Disponibles Ahora</h2>
+                    <span className="drops-counter">
+                        {loading ? '...' : drops.length} ACTIVOS
+                    </span>
                 </div>
 
                 {loading ? (
-                    <div style={{ textAlign: 'center', padding: '4rem' }}>Cargando drops...</div>
+                    <div style={{ textAlign: 'center', padding: '4rem', color: '#666' }}>Cargando lanzamientos...</div>
                 ) : (
                     <div className="grid product-grid">
-                        {drops.map((product) => (
-                            <ProductCard key={product.id} {...product} />
-                        ))}
+                        {drops.length > 0 ? (
+                            drops.map((product) => (
+                                <ProductCard key={product.id} {...product} isDrop={true} />
+                            ))
+                        ) : (
+                            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '4rem', color: '#666' }}>
+                                No hay drops activos en este momento.
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
 
-            {/* Newsletter / Notifications */}
-            <div style={{ background: 'black', color: 'white', padding: '6rem 0', textAlign: 'center' }}>
+            {/* NEWSLETTER / ALERTS */}
+            <section className="drops-newsletter">
                 <div className="container">
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>No te pierdas el próximo</h2>
-                    <p style={{ color: '#999', marginBottom: '2rem' }}>Recibe notificaciones 1 hora antes de cada lanzamiento.</p>
+                    <Bell size={48} style={{ marginBottom: '1.5rem', opacity: 0.8 }} />
+                    <h2 className="newsletter-title">Nunca pierdas un Drop</h2>
+                    <p style={{ color: '#888', maxWidth: '400px', margin: '0 auto' }}>
+                        Recibe notificaciones push y acceso anticipado 1 hora antes de cada lanzamiento oficial.
+                    </p>
 
-                    <form style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                    <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
                         <input
                             type="email"
-                            placeholder="Tu email aquí"
-                            style={{ padding: '1rem', width: '300px', borderRadius: '4px', border: 'none' }}
+                            placeholder="Tu correo electrónico"
+                            className="newsletter-input"
                         />
-                        <button className="btn btn-primary" style={{ background: 'white', color: 'black', border: 'none' }}>
-                            Avísame
+                        <button className="newsletter-btn">
+                            Unirse a la Lista
                         </button>
                     </form>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

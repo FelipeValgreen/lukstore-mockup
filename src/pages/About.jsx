@@ -1,39 +1,121 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { usePageMeta } from '../hooks/usePageMeta';
-import './Institutional.css';
+import { PageMeta } from '../hooks/usePageMeta';
+import './About.css';
 
 const About = () => {
-    usePageMeta('Nosotros', 'Curaduría real de streetwear.');
-
     return (
-        <div className="institutional-page">
-            {/* HERO SHORT */}
-            <div className="kp-hero" style={{ height: '300px', backgroundImage: 'url(/assets/hero-about.png)' }}>
-                <div className="kp-overlay"></div>
-                <div className="container" style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', alignItems: 'center' }}>
-                    <h1 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 800 }}>Curaduría real de streetwear.</h1>
-                </div>
-            </div>
+        <div className="about-page">
+            <PageMeta
+                title="Manifiesto Lukstore | Real Streetwear"
+                description="No hype. Solo cultura. Lukstore es curaduría, autenticidad y respeto por el streetwear real."
+            />
+            {/* SEO Organization Schema */}
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "Lukstore",
+                    "url": "https://lukstore.cl",
+                    "logo": "https://lukstore.cl/assets/logo.png",
+                    "description": "Curaduría real de streetwear. Zapatillas y ropa urbana seleccionada.",
+                    "sameAs": ["https://instagram.com/lukstore"]
+                })}
+            </script>
 
-            <div className="container" style={{ padding: '4rem 0', maxWidth: '800px' }}>
-                <div className="about-content" style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#111' }}>
-                    <p style={{ marginBottom: '2rem' }}>
-                        Lukstore es un ecommerce especializado en zapatillas, ropa y accesorios urbanos. Nuestro enfoque no es el volumen ni el hype, sino la selección consciente de productos que funcionan en la calle y en el día a día.
-                    </p>
-                    <p style={{ marginBottom: '2rem' }}>
-                        Cada producto que ves en nuestra tienda es revisado antes de ser publicado. Buscamos diseño, estado y funcionalidad, priorizando decisiones informadas por sobre tendencias pasajeras.
-                    </p>
-                    <p style={{ marginBottom: '4rem' }}>
-                        Lukstore nace desde la cultura urbana, entendiendo el streetwear como algo cotidiano, no como un lujo ni una promesa vacía.
-                    </p>
+            {/* HERO */}
+            <section className="about-hero" style={{ backgroundImage: 'url(/assets/hero-about.png)' }}>
+                <div className="about-hero-overlay"></div>
+                <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+                    <h1>NO HYPE.<br />JUST CULTURE.</h1>
                 </div>
+            </section>
 
-                <div className="brand-seal" style={{ textAlign: 'center', borderTop: '1px solid #eee', paddingTop: '4rem' }}>
-                    <img src="/assets/logo-isotype.png" alt="Seal" style={{ width: '40px', marginBottom: '1rem', opacity: 0.8 }} />
-                    <h3 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '2rem' }}>Selected street goods.</h3>
-                    <Link to="/zapatillas" className="btn btn-primary">Ver productos</Link>
+            {/* INTRO: QUIENES SOMOS */}
+            <section className="container" style={{ padding: '6rem 0' }}>
+                <div className="about-grid-intro">
+                    <div className="about-text-col">
+                        <span className="subtitle-small">Nuestra Historia</span>
+                        <h2 className="section-title">Nacidos del Cemento</h2>
+                        <p className="lead-text">
+                            Lukstore no empezó en una oficina. Empezó en las filas de los drops, en los foros de compra-venta y en la búsqueda incansable del par perfecto.
+                        </p>
+                        <p>
+                            Fundada en 2024 en Santiago, nuestra misión es simple: traer a Chile lo mejor del streetwear mundial sin el ruido, sin las réplicas y sin los precios abusivos. Somos coleccionistas sirviendo a coleccionistas.
+                        </p>
+                    </div>
+                    <div className="about-img-col">
+                        <img src="/assets/cat-streetwear.png" alt="Lukstore Origins" style={{ width: '100%', height: 'auto', filter: 'grayscale(100%)' }} />
+                    </div>
                 </div>
+            </section>
+
+            {/* TIMELINE / MILESTONES */}
+            <section className="timeline-section">
+                <div className="container">
+                    <h2 className="section-title center">El Camino</h2>
+                    <div className="timeline-grid">
+                        <div className="timeline-item">
+                            <span className="year">2020</span>
+                            <h3>El Concepto</h3>
+                            <p>La idea nace como un servicio de personal shopper exclusivo para amigos y familiares.</p>
+                        </div>
+                        <div className="timeline-item">
+                            <span className="year">2023</span>
+                            <h3>Primera Curaduría</h3>
+                            <p>Viajes a USA y Japón para asegurar stock de siluetas imposibles de conseguir en Latam.</p>
+                        </div>
+                        <div className="timeline-item">
+                            <span className="year">2024</span>
+                            <h3>Lanzamiento Oficial</h3>
+                            <p>Lukstore.cl abre sus puertas digitales. Sold out del primer drop en 24 horas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* VALUES (SEO TRUST SIGNALS) */}
+            <section className="values-section">
+                <div className="container">
+                    <div className="values-grid">
+                        <div className="value-card">
+                            <div className="value-number">01</div>
+                            <h4 className="value-title">Autenticidad</h4>
+                            <p className="value-desc">Garantizamos que cada producto es legítimo. Doble verificación en mano antes de cada envío.</p>
+                        </div>
+                        <div className="value-card">
+                            <div className="value-number">02</div>
+                            <h4 className="value-title">Curaduría</h4>
+                            <p className="value-desc">No vendemos todo. Vendemos lo que usaríamos nosotros. Solo lo mejor de Jordan, Nike y Yeezy.</p>
+                        </div>
+                        <div className="value-card">
+                            <div className="value-number">03</div>
+                            <h4 className="value-title">Cultura</h4>
+                            <p className="value-desc">Respetamos la historia. Cada par viene con su contexto, no es solo moda, es legado.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* TEAM / SHOWROOM */}
+            <section className="container" style={{ padding: '6rem 0' }}>
+                <div className="showroom-banner" style={{ background: '#111', color: '#fff', padding: '4rem', textAlign: 'center' }}>
+                    <h2>Visit Us</h2>
+                    <p style={{ maxWidth: '600px', margin: '1rem auto', color: '#ccc' }}>
+                        Aunque somos nativos digitales, realizamos pop-ups exclusivos en Santiago centro. Mantente atento a nuestras redes para el próximo evento.
+                    </p>
+                    <Link to="/contacto" className="btn btn-white">Contactar Equipo</Link>
+                </div>
+            </section>
+
+            {/* TRUST MARK */}
+            <div className="trust-block">
+                <div className="trust-logo">
+                    <img src="/assets/logo-isotype.png" alt="Lukstore Seal" />
+                </div>
+                <p style={{ textTransform: 'uppercase', letterSpacing: '0.2em', fontWeight: 600, fontSize: '0.8rem' }}>
+                    Santiago, Chile — Est. 2024
+                </p>
             </div>
         </div>
     );

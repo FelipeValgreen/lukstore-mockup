@@ -1,11 +1,11 @@
+
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import { Package, Clock, CheckCircle, Truck, AlertCircle } from 'lucide-react';
 import './Institutional.css'; // Reuse basic layout styles
 
 const Admin = () => {
-    usePageMeta('Admin Dashboard', 'Panel de administración de Lukstore.');
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -42,6 +42,7 @@ const Admin = () => {
 
     return (
         <div className="institutional-page">
+            <PageMeta title="Panel de Administración" description="Gestión de pedidos Lukstore." />
             <div className="container" style={{ padding: '4rem 0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                     <h1>Panel de Pedidos</h1>

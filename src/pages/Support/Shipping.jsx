@@ -1,12 +1,11 @@
 import React from 'react';
-import { usePageMeta } from '../../hooks/usePageMeta';
+import { PageMeta } from '../../hooks/usePageMeta';
 import '../../pages/Institutional.css';
 
 const Shipping = () => {
-    usePageMeta('Envíos y Devoluciones', 'Información sobre despachos.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Envíos y Devoluciones" description="Información sobre despachos." />
             <div className="container" style={{ padding: '6rem 0', maxWidth: '800px' }}>
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>Envíos y devoluciones</h1>
 

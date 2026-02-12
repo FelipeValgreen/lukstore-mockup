@@ -1,12 +1,12 @@
 import React from 'react';
-import { usePageMeta } from '../../hooks/usePageMeta';
+import { PageMeta } from '../../hooks/usePageMeta';
+import { Check, ShieldCheck } from 'lucide-react';
 import '../../pages/Institutional.css';
 
 const Authenticity = () => {
-    usePageMeta('Autenticidad', 'Proceso de verificación.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Autenticidad" description="Proceso de verificación." />
             <div className="container" style={{ padding: '6rem 0', maxWidth: '800px' }}>
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Autenticidad</h1>
 

@@ -8,43 +8,36 @@ export const useProducts = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function fetchProducts() {
-            setLoading(true);
-            try {
-                const { data, error } = await supabase
-                    .from('products')
-                    .select('*');
-
-                if (error) throw error;
-                if (data) setProducts(data);
-            } catch (err) {
-                console.error("Error fetching products:", err);
-                setError(err.message);
-                // Fallback to mock data if DB fails or is empty, to prevent blank screen
-                setProducts(PRODUCTS);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchProducts();
+        // FOR DEMO: Force usage of local data to avoid Supabase connection issues/empty data
+        setProducts(PRODUCTS);
+        setLoading(false);
     }, []);
 
     const getActiveDrops = useCallback(() => products.filter(p => p.isDrop), [products]);
-    const getFeaturedProducts = useCallback(() => products.filter(p => p.condition === 'new'), [products]);
+    const getFeaturedProducts = useCallback(() => products.filter(p => p.isFeatured), [products]);
     const getUsedProducts = useCallback(() => products.filter(p => p.condition === 'used'), [products]);
 
     // Helper to filter locally
     const getProductsByCategory = useCallback((cat) => {
         if (!products.length) return [];
         if (cat === 'drops') return getActiveDrops();
+
+        const cleanCat = cat.toLowerCase();
+
+        // Mappings
+        if (cleanCat === 'basketball') return products.filter(p => p.category === 'Zapatillas');
+        if (cleanCat === 'streetwear') return products.filter(p => p.category === 'Streetwear' || p.gender === 'Unisex');
+
+        // General search
         return products.filter(p =>
-            p.category.toLowerCase().includes(cat.toLowerCase()) ||
-            p.title.toLowerCase().includes(cat.toLowerCase())
+            p.category.toLowerCase().includes(cleanCat) ||
+            p.title.toLowerCase().includes(cleanCat) ||
+            (p.tags && p.tags.some(t => t.includes(cleanCat)))
         );
     }, [products, getActiveDrops]);
 
     const getProductById = useCallback((id) => products.find(p => p.id === id), [products]);
+    const getProductBySlug = useCallback((slug) => products.find(p => p.slug === slug), [products]);
 
     return {
         products,
@@ -54,6 +47,7 @@ export const useProducts = () => {
         getFeaturedProducts,
         getUsedProducts,
         getProductsByCategory,
-        getProductById
+        getProductById,
+        getProductBySlug
     };
 };

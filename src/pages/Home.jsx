@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import { PageMeta } from '../hooks/usePageMeta';
 import ProductCard from '../components/ProductCard';
 import { useProducts } from '../hooks/useProducts';
 import './Home.css';
 
 const Home = () => {
-    const { getFeaturedProducts, getUsedProducts, loading } = useProducts();
-    const newArrivals = getFeaturedProducts() || []; // "Nuevos Ingresos" logic (using featured for now)
-    const featuredSelection = getUsedProducts() || []; // "Selección Destacada" logic (using used for variety)
+    const { getFeaturedProducts, loading, products } = useProducts();
+    const newArrivals = products.slice(0, 4);
+    const featuredSelection = getFeaturedProducts() || [];
 
     // Animation Variants
     const fadeInUp = {
@@ -29,28 +29,25 @@ const Home = () => {
 
     return (
         <div className="home-clean">
-            <Helmet>
-                <title>LUKSTORE | Selected Street Goods</title>
-                <meta name="description" content="Zapatillas, ropa y accesorios urbanos seleccionados uno a uno." />
-            </Helmet>
+            <PageMeta title="Selected Street Goods" description="Zapatillas, ropa y accesorios urbanos seleccionados uno a uno." />
 
-            {/* 1. HERO PRINCIPAL */}
-            <section className="hero-clean" style={{ backgroundImage: 'url(/assets/hero-street-editorial.png)' }}>
-                <div className="hero-overlay"></div>
-                <div className="hero-content">
+            {/* 1. HERO PRINCIPAL (Original Restored & Improved) */}
+            <section className="hero-clean hero-original">
+                <div className="hero-overlay-dark"></div>
+                <div className="hero-content-original">
                     <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="hero-title"
+                        className="hero-title-original"
                     >
-                        SELECTED<br />STREET GOODS
+                        SELECTED<br />STREET<br />GOODS
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
-                        className="hero-subtitle"
+                        className="hero-subtitle-original"
                     >
                         Zapatillas, ropa y accesorios urbanos seleccionados uno a uno.
                     </motion.p>
@@ -58,10 +55,10 @@ const Home = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
-                        className="hero-actions"
+                        className="hero-actions-original"
                     >
-                        <Link to="/zapatillas" className="btn btn-primary">Ver Zapatillas</Link>
-                        <Link to="/drops" className="btn btn-outline-white">Ver Drops</Link>
+                        <Link to="/zapatillas" className="btn btn-black">VER ZAPATILLAS</Link>
+                        <Link to="/drops" className="btn btn-transparent">VER DROPS</Link>
                     </motion.div>
                 </div>
             </section>
@@ -232,14 +229,22 @@ const Home = () => {
             </section>
 
             {/* 9. CTA FINAL */}
-            <section className="final-cta container">
-                <div className="cta-box">
-                    <h2>Completa tu fit</h2>
-                    <div className="cta-buttons">
-                        <Link to="/hombre" className="btn btn-secondary">Hombre</Link>
-                        <Link to="/mujer" className="btn btn-secondary">Mujer</Link>
+            {/* 9. CTA FINAL VISUAL */}
+            <section className="container final-cta-visual">
+                <Link to="/hombre" className="cta-card">
+                    <div className="cta-bg" style={{ backgroundImage: 'url(/assets/cat-streetwear.png)' }}></div>
+                    <div className="cta-content">
+                        <h2>Hombre</h2>
+                        <span>Ver Colección</span>
                     </div>
-                </div>
+                </Link>
+                <Link to="/mujer" className="cta-card">
+                    <div className="cta-bg" style={{ backgroundImage: 'url(/assets/hero-home.png)' }}></div>
+                    <div className="cta-content">
+                        <h2>Mujer</h2>
+                        <span>Ver Colección</span>
+                    </div>
+                </Link>
             </section>
         </div >
     );

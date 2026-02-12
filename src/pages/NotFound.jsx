@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 
 const NotFound = () => {
-    usePageMeta('Página no encontrada', 'Error 404');
-
     return (
         <div style={{
             height: '70vh',
@@ -15,6 +13,7 @@ const NotFound = () => {
             textAlign: 'center',
             padding: '2rem'
         }}>
+            <PageMeta title="Página no encontrada" description="Error 404" />
             <h1 style={{ fontSize: '8rem', fontWeight: '800', margin: 0, lineHeight: 1 }}>404</h1>
             <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Te perdiste en el hype.</h2>
             <p style={{ color: '#666', maxWidth: '400px', marginBottom: '2rem' }}>

@@ -1,10 +1,7 @@
-// Add useNavigate hook importation at the top if not present, but since I am replacing the component body/part, I can't easily see imports.
-// Wait, I need to see if useNavigate is imported.
-// View file showed: import { Link } from 'react-router-dom'; (line 2)
-// I need to add useNavigate.
 
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { PageMeta } from '../hooks/usePageMeta';
 import { Trash2, Plus, Minus, ArrowLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
@@ -25,6 +22,7 @@ const Cart = () => {
 
     return (
         <div className="cart-page container">
+            <PageMeta title="Tu Carrito" description="Revisa tu selección antes de comprar." />
             <h1 className="cart-title">Tu Carrito ({cartItems.length})</h1>
 
             {/* Free Shipping Progress */}

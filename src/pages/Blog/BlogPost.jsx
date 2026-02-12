@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { getBlogPost } from '../../data/blogData';
+import { getBlogPost } from '../../data/blog';
 import '../Home.css'; // Utilizing shared styles
 
 const BlogPost = () => {

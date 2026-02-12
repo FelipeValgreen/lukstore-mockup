@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { BLOG_POSTS } from '../../data/blogData';
+import { BLOG_POSTS } from '../../data/blog';
 import '../../components/Header.css'; // Reusing global styles
 import '../Home.css'; // Reusing card styles
 

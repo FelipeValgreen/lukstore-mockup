@@ -1,10 +1,8 @@
 import React from 'react';
-import { usePageMeta } from '../../hooks/usePageMeta';
+import { PageMeta } from '../../hooks/usePageMeta';
 import '../../pages/Institutional.css';
 
 const FAQ = () => {
-    usePageMeta('Preguntas Frecuentes', 'Respuestas a tus dudas sobre envíos, pagos y originalidad en Lukstore.');
-
     const faqs = [
         {
             q: "¿Son originales los productos?",
@@ -30,6 +28,7 @@ const FAQ = () => {
 
     return (
         <div className="institutional-page">
+            <PageMeta title="Preguntas Frecuentes" description="Respuestas a tus dudas sobre envíos, pagos y originalidad en Lukstore." />
             <div className="container" style={{ padding: '6rem 0', maxWidth: '800px' }}>
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Preguntas Frecuentes</h1>
 

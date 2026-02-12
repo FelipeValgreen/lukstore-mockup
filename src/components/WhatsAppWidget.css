@@ -1,0 +1,184 @@
+.whatsapp-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1001;
+    /* Above cookie banner usually, or ensure layout works */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.wa-float-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wa-float-btn:hover {
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.wa-float-btn.active {
+    transform: rotate(45deg);
+    /* Optional effect if using + icon, but we have logo */
+}
+
+.wa-logo-svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+/* Chat Window */
+.wa-chat-window {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transform-origin: bottom right;
+    display: flex;
+    flex-direction: column;
+}
+
+.wa-header {
+    background: #075E54;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wa-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.wa-avatar {
+    width: 36px;
+    height: 36px;
+    background: white;
+    color: #075E54;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.wa-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.wa-status {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.wa-close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+    display: flex;
+}
+
+.wa-close-btn:hover {
+    opacity: 1;
+}
+
+.wa-body {
+    padding: 1rem;
+    background: #E5DDD5;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    /* Generic WA background pattern */
+    flex: 1;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.wa-message-received {
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0 12px 12px 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 85%;
+}
+
+.wa-message-received p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #111;
+    line-height: 1.4;
+}
+
+.wa-time {
+    display: block;
+    text-align: right;
+    font-size: 0.65rem;
+    color: #999;
+    margin-top: 4px;
+}
+
+.wa-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wa-option-btn {
+    background: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.wa-option-btn:hover {
+    background: #f5f5f5;
+}
+
+.wa-option-btn span {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .whatsapp-widget {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .wa-chat-window {
+        width: 280px;
+        right: 0;
+    }
+}

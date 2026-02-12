@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { usePageMeta } from '../../hooks/usePageMeta';
+import { PageMeta } from '../../hooks/usePageMeta';
 import '../../pages/Institutional.css';
 
 const Register = () => {
-    usePageMeta('Crear Cuenta', 'Únete a la comunidad Lukstore.');
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -20,6 +19,7 @@ const Register = () => {
 
     return (
         <div className="institutional-page">
+            <PageMeta title="Crear Cuenta" description="Únete a la comunidad Lukstore." />
             <div className="container" style={{
                 minHeight: '60vh',
                 display: 'flex',

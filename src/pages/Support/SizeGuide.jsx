@@ -1,12 +1,11 @@
 import React from 'react';
-import { usePageMeta } from '../../hooks/usePageMeta';
+import { PageMeta } from '../../hooks/usePageMeta';
 import '../../pages/Institutional.css';
 
 const SizeGuide = () => {
-    usePageMeta('Guía de Tallas', 'Encuentra tu ajuste perfecto.');
-
     return (
         <div className="institutional-page">
+            <PageMeta title="Guía de Tallas" description="Encuentra tu ajuste perfecto." />
             <div className="container" style={{ padding: '6rem 0', maxWidth: '800px' }}>
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Guía de tallas</h1>
                 <p style={{ fontSize: '1.1rem', color: '#666', marginBottom: '3rem' }}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
-import { usePageMeta } from '../hooks/usePageMeta';
+import { PageMeta } from '../hooks/usePageMeta';
 import SEOBlock from '../components/SEOBlock';
 import './Category.css';
 
@@ -17,7 +17,7 @@ const CATEGORY_META = {
     streetwear: {
         title: "Streetwear Selected",
         description: "Streetwear funcional. Corte, material y actitud. Piezas seleccionadas para el día a día.",
-        image: "/assets/cat-streetwear.png",
+        image: "/assets/hero-street-editorial.png", // More editorial/lifestyle vibe
         seoText: "El streetwear es más que logotipos. Es sobre la calidad del algodón, el corte oversized perfecto y la durabilidad de las prendas. En Lukstore seleccionamos hoodies, poleras y pantalones que resisten el uso diario con estilo."
     },
     drops: {
@@ -28,8 +28,8 @@ const CATEGORY_META = {
     },
     accesorios: {
         title: "Accesorios",
-        description: "Detalles que completan el fit.",
-        image: "/assets/cat-streetwear.png",
+        description: "Detalles que completan el fit. Gorros, calcetines y bolsos.",
+        image: "/assets/banner-sale.png", // Using a dark/neutral banner for now
         seoText: "Complementos seleccionados para cerrar tu outfit. Desde gorros y calcetines hasta bolsos y joyería urbana. Calidad y diseño funcional."
     }
 };
@@ -57,8 +57,6 @@ const Category = ({ type }) => {
         setProducts([...result]);
     }, [type, filters, loading, getProductsByCategory]);
 
-    usePageMeta(meta ? meta.title : 'Categoría', meta ? meta.description : '');
-
     if (!meta) return <div>Category not found</div>;
 
     const handleFilterChange = (key, value) => {
@@ -67,6 +65,7 @@ const Category = ({ type }) => {
 
     return (
         <div className="category-page">
+            <PageMeta title={meta ? meta.title : 'Categoría'} description={meta ? meta.description : ''} />
             {/* Hero Category */}
             <section className="cat-hero" style={{ backgroundImage: `url('${meta.image}')` }}>
                 <div className="cat-hero-overlay"></div>
