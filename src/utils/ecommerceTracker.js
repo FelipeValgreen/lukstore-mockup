@@ -3,13 +3,44 @@ export const initDataLayer = () => {
     window.dataLayer = window.dataLayer || [];
 };
 
-const pushToDataLayer = (eventName, ecommerceData) => {
+const pushToDataLayer = (eventName, ecommerceData, userData = null) => {
     initDataLayer();
     // Clear previous ecommerce object to avoid data bleeding
     window.dataLayer.push({ ecommerce: null });
-    window.dataLayer.push({
+    
+    const payload = {
         event: eventName,
         ecommerce: ecommerceData
+    };
+    
+    if (userData) {
+        payload.user_data = userData;
+    }
+    
+    window.dataLayer.push(payload);
+};
+
+export const mapUserData = (customer) => {
+    if (!customer) return null;
+    return {
+        email: customer.email || "",
+        address: {
+            first_name: customer.firstName || "",
+            last_name: customer.lastName || "",
+            street: customer.address || "",
+            city: customer.city || "",
+            region: customer.region || "",
+            country: "CL"
+        }
+    };
+};
+
+export const trackVirtualPageView = (url, title) => {
+    initDataLayer();
+    window.dataLayer.push({
+        event: "virtual_page_view",
+        page_location: url,
+        page_title: title
     });
 };
 
@@ -87,34 +118,34 @@ export const trackViewCart = (cartItems, cartTotal) => {
     });
 };
 
-export const trackBeginCheckout = (cartItems, cartTotal) => {
+export const trackBeginCheckout = (cartItems, cartTotal, customer = null) => {
     if (!cartItems || cartItems.length === 0) return;
     pushToDataLayer("begin_checkout", {
         currency: "CLP",
         value: cartTotal,
         items: cartItems.map((item, index) => mapProductToItem(item, index))
-    });
+    }, mapUserData(customer));
 };
 
-export const trackAddShippingInfo = (cartItems, cartTotal, shippingTier) => {
+export const trackAddShippingInfo = (cartItems, cartTotal, shippingTier, customer = null) => {
     pushToDataLayer("add_shipping_info", {
         currency: "CLP",
         value: cartTotal,
         shipping_tier: shippingTier,
         items: cartItems.map((item, index) => mapProductToItem(item, index))
-    });
+    }, mapUserData(customer));
 };
 
-export const trackAddPaymentInfo = (cartItems, cartTotal, paymentType) => {
+export const trackAddPaymentInfo = (cartItems, cartTotal, paymentType, customer = null) => {
     pushToDataLayer("add_payment_info", {
         currency: "CLP",
         value: cartTotal,
         payment_type: paymentType,
         items: cartItems.map((item, index) => mapProductToItem(item, index))
-    });
+    }, mapUserData(customer));
 };
 
-export const trackPurchase = (cartItems, cartTotal, transactionId, tax = 0, shipping = 0) => {
+export const trackPurchase = (cartItems, cartTotal, transactionId, tax = 0, shipping = 0, customer = null) => {
     pushToDataLayer("purchase", {
         transaction_id: transactionId,
         value: cartTotal,
@@ -122,5 +153,5 @@ export const trackPurchase = (cartItems, cartTotal, transactionId, tax = 0, ship
         shipping: shipping,
         currency: "CLP",
         items: cartItems.map((item, index) => mapProductToItem(item, index))
-    });
+    }, mapUserData(customer));
 };

@@ -32,7 +32,7 @@ const Success = () => {
                          setOrderDetails(orderData); // Save to state to render it in UI
 
                          // Trigger GA4 Purchase Event
-                         trackPurchase(orderData.cartItems, orderData.cartTotal, orderData.transactionId || orderId);
+                         trackPurchase(orderData.cartItems, orderData.cartTotal, orderData.transactionId || orderId, 0, 0, orderData.customer);
                          
                          // Clean up so refresh doesn't trigger GA4 twice!
                          sessionStorage.removeItem('lastOrderGA4'); 

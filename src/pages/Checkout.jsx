@@ -98,8 +98,8 @@ const Checkout = () => {
 
                     if(fnData?.init_point) {
                          // Fire GA4 Events right before leaving for Payment Gateway
-                         trackAddShippingInfo(cartItems, cartTotal, "Standard");
-                         trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago");
+                         trackAddShippingInfo(cartItems, cartTotal, "Standard", formData);
+                         trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago", formData);
                          
                          sessionStorage.setItem('lastOrderGA4', JSON.stringify({
                              cartItems,
@@ -119,8 +119,8 @@ const Checkout = () => {
                 console.log("Mocking MercadoPago payment flow...");
                 
                 // Fire GA4 Events
-                trackAddShippingInfo(cartItems, cartTotal, "Standard");
-                trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago");
+                trackAddShippingInfo(cartItems, cartTotal, "Standard", formData);
+                trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago", formData);
                 
                 const fakeOrderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
                 
