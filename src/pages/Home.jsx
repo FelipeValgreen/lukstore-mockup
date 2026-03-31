@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageMeta } from '../hooks/usePageMeta';
 import ProductCard from '../components/ProductCard';
 import { useProducts } from '../hooks/useProducts';
+import { trackViewItemList } from '../utils/ecommerceTracker';
 import './Home.css';
 
 const Home = () => {
     const { getFeaturedProducts, loading, products } = useProducts();
-    const newArrivals = products.slice(0, 4);
-    const featuredSelection = getFeaturedProducts() || [];
+    const newArrivals = useMemo(() => products.slice(0, 4), [products]);
+    const featuredSelection = useMemo(() => getFeaturedProducts() || [], [products, getFeaturedProducts]);
+
+    useEffect(() => {
+        if (!loading && products.length > 0) {
+            trackViewItemList(newArrivals, "home_new_arrivals", "Nuevos Ingresos");
+            trackViewItemList(featuredSelection.slice(0, 4), "home_featured", "Selección Destacada");
+        }
+    }, [loading, products, newArrivals, featuredSelection]);
 
     // Animation Variants
     const fadeInUp = {
@@ -175,7 +183,7 @@ const Home = () => {
                         <div className="j-img" style={{ backgroundImage: 'url(/assets/hero-street-editorial.png)' }}></div>
                         <div className="j-content">
                             <span className="j-tag">Cultura</span>
-                            <h3>La historia detrás de las Jordan 4 "Bred"</h3>
+                            <h3>La historia detrás de las Jordan 4 &quot;Bred&quot;</h3>
                             <Link to="/blog/historia-jordan-4-bred" className="j-link">Leer nota</Link>
                         </div>
                     </div>

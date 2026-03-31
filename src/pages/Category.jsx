@@ -5,7 +5,7 @@ import SEOBlock from '../components/SEOBlock';
 import './Category.css';
 
 import { useProducts } from '../hooks/useProducts';
-import { trackViewItemList } from '../utils/analytics';
+import { trackViewItemList } from '../utils/ecommerceTracker';
 
 // Content Config
 const CATEGORY_META = {

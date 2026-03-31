@@ -4,7 +4,8 @@ import { PageMeta } from '../hooks/usePageMeta';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { Shield, Truck, CreditCard, ThumbsUp } from 'lucide-react';
-import { trackViewItem, trackAddToCart } from '../utils/analytics';
+import { trackViewItem, trackAddToCart, trackViewItemList } from '../utils/ecommerceTracker';
+import { useProducts } from '../hooks/useProducts';
 import './Product.css';
 
 // Accordion Component for IKEA-style cleaner UI
@@ -45,6 +46,11 @@ const Product = () => {
             setProduct(found || null);
             if (found) {
                 trackViewItem(found);
+                
+                const related = products.filter(p => p.category === found.category && p.id !== found.id).slice(0, 4);
+                if (related.length > 0) {
+                    trackViewItemList(related, "related_products", "Productos Similares");
+                }
                 
                 // Set initial active image
                 if (found.images && found.images.length > 0) {

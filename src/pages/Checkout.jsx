@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { PageMeta } from '../hooks/usePageMeta';
 import { supabase } from '../supabase';
-import { trackAddShippingInfo, trackAddPaymentInfo } from '../utils/analytics';
+import { trackAddShippingInfo, trackAddPaymentInfo } from '../utils/ecommerceTracker';
 import './Cart.css'; // Reusing Cart styles for layout
 
 const Checkout = () => {
@@ -21,6 +21,8 @@ const Checkout = () => {
         region: ''
     });
 
+    const [isProcessing, setIsProcessing] = useState(false);
+
     if (cartItems.length === 0) {
         return (
             <div className="container" style={{ padding: '4rem', textAlign: 'center' }}>
@@ -36,82 +38,111 @@ const Checkout = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsProcessing(true);
 
         try {
-            // 1. Create Order in Pending State
-            const { data: orderData, error: orderError } = await supabase
-                .from('orders')
-                .insert([{
-                    customer_name: `${formData.firstName} ${formData.lastName}`,
-                    customer_email: formData.email,
-                    customer_address: formData.address,
-                    customer_city: formData.city,
-                    customer_region: formData.region,
-                    total_amount: cartTotal,
-                    status: 'pending', // Pending payment
-                    payment_method: 'mercadopago'
-                }])
-                .select()
-                .single();
+            // Check if we have a real backend by verifying if insert function exists on the mock
+            const hasRealBackend = typeof supabase.from('orders').insert === 'function';
 
-            if (orderError) throw orderError;
+            if (hasRealBackend) {
+                // 1. Create Order in Pending State
+                const { data: orderData, error: orderError } = await supabase
+                    .from('orders')
+                    .insert([{
+                        customer_name: `${formData.firstName} ${formData.lastName}`,
+                        customer_email: formData.email,
+                        customer_address: formData.address,
+                        customer_city: formData.city,
+                        customer_region: formData.region,
+                        total_amount: cartTotal,
+                        status: 'pending', // Pending payment
+                        payment_method: 'mercadopago'
+                    }])
+                    .select()
+                    .single();
 
-            // 2. Create Order Items
-            if (orderData) {
-                const orderItems = cartItems.map(item => ({
-                    order_id: orderData.id,
-                    product_id: item.id,
-                    product_title: item.title,
-                    quantity: item.quantity,
-                    price_at_purchase: parseInt(String(item.price).replace(/\./g, ''))
+                if (orderError) throw orderError;
+
+                // 2. Create Order Items
+                if (orderData) {
+                    const orderItems = cartItems.map(item => ({
+                        order_id: orderData.id,
+                        product_id: item.id,
+                        product_title: item.title,
+                        quantity: item.quantity,
+                        price_at_purchase: parseInt(String(item.price).replace(/\./g, ''))
+                    }));
+
+                    const { error: itemsError } = await supabase
+                        .from('order_items')
+                        .insert(orderItems);
+
+                    if (itemsError) throw itemsError;
+
+                    // 3. Request Preference Form Edge Function
+                    const { data: fnData, error: fnError } = await supabase.functions.invoke('create-preference', {
+                        body: {
+                           orderItems: orderItems,
+                           orderId: orderData.id,
+                           payer: {
+                               email: formData.email,
+                               name: formData.firstName
+                           }
+                        }
+                    });
+
+                    if (fnError) {
+                         console.error("Function error details:", fnError)
+                         throw fnError;
+                    }
+
+                    if(fnData?.init_point) {
+                         // Fire GA4 Events right before leaving for Payment Gateway
+                         trackAddShippingInfo(cartItems, cartTotal, "Standard");
+                         trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago");
+                         
+                         sessionStorage.setItem('lastOrderGA4', JSON.stringify({
+                             cartItems,
+                             cartTotal,
+                             transactionId: orderData.id,
+                             customer: formData
+                         }));
+
+                         clearCart();
+                         window.location.href = fnData.init_point;
+                    } else {
+                         throw new Error("No init_point received from MercadoPago");
+                    }
+                }
+            } else {
+                // Mock Frontend Flow for Demo & Tracking
+                console.log("Mocking MercadoPago payment flow...");
+                
+                // Fire GA4 Events
+                trackAddShippingInfo(cartItems, cartTotal, "Standard");
+                trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago");
+                
+                const fakeOrderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+                
+                // Store order details temporarily for 'purchase' tracking and receipt rendering
+                sessionStorage.setItem('lastOrderGA4', JSON.stringify({
+                    cartItems,
+                    cartTotal,
+                    transactionId: fakeOrderId,
+                    customer: formData
                 }));
 
-                const { error: itemsError } = await supabase
-                    .from('order_items')
-                    .insert(orderItems);
-
-                if (itemsError) throw itemsError;
-
-                // 3. Request Preference Form Edge Function
-                const { data: fnData, error: fnError } = await supabase.functions.invoke('create-preference', {
-                    body: {
-                       orderItems: orderItems,
-                       orderId: orderData.id,
-                       payer: {
-                           email: formData.email,
-                           name: formData.firstName
-                       }
-                    }
-                });
-
-                if (fnError) {
-                     console.error("Function error details:", fnError)
-                     throw fnError;
-                }
-
-                if(fnData?.init_point) {
-                     // Fire GA4 Events right before leaving for Payment Gateway
-                     trackAddShippingInfo(cartItems, cartTotal, "Standard");
-                     trackAddPaymentInfo(cartItems, cartTotal, "MercadoPago");
-                     
-                     // Store order details temporarily for 'purchase' tracking on Success page
-                     sessionStorage.setItem('lastOrderGA4', JSON.stringify({
-                         cartItems,
-                         cartTotal,
-                         transactionId: orderData.id
-                     }));
-
-                     // Redirect to MP
-                     clearCart();
-                     window.location.href = fnData.init_point;
-                } else {
-                     throw new Error("No init_point received from MercadoPago");
-                }
+                // Simulate network payment gateway transition
+                setTimeout(() => {
+                    clearCart();
+                    navigate(`/success?status=approved&orderId=${fakeOrderId}`);
+                }, 1500); 
             }
 
         } catch (error) {
             console.error('Error creating order/preference:', error);
-            alert('Hubo un error al procesar tu pedido con MercadoPago. Por favor intenta nuevamente.');
+            alert('Hubo un error al procesar tu pedido. Por favor intenta nuevamente.');
+            setIsProcessing(false);
         }
     };
 
@@ -210,8 +241,8 @@ const Checkout = () => {
                         <span>Total a Pagar</span>
                         <span>${cartTotal.toLocaleString('es-CL')}</span>
                     </div>
-                    <button type="submit" form="checkoutForm" className="btn btn-primary btn-block mp-btn">
-                        Pagar con MercadoPago
+                    <button type="submit" form="checkoutForm" className="btn btn-primary btn-block mp-btn" disabled={isProcessing}>
+                        {isProcessing ? 'Procesando conexión...' : 'Pagar con MercadoPago'}
                     </button>
                     <Link to="/cart" className="continue-shopping" style={{ marginTop: '1rem' }}>
                         Volver al carrito

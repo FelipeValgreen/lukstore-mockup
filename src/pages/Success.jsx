@@ -3,38 +3,47 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle, Loader2 } from 'lucide-react';
 import { PageMeta } from '../hooks/usePageMeta';
 import { supabase } from '../supabase';
-import { trackPurchase } from '../utils/analytics';
+import { trackPurchase } from '../utils/ecommerceTracker';
 
 const Success = () => {
     const [searchParams] = useSearchParams();
-    const [orderId, setOrderId] = useState(searchParams.get('orderId') || searchParams.get('external_reference'));
+    const [orderId] = useState(searchParams.get('orderId') || searchParams.get('external_reference'));
     const paymentStatus = searchParams.get('status');
     const [isVerifying, setIsVerifying] = useState(true);
+    const [orderDetails, setOrderDetails] = useState(null);
 
     useEffect(() => {
         const verifyPayment = async () => {
              if(orderId && paymentStatus === 'approved') {
-                 // Update order status in Supabase to 'paid'
-                 const { error } = await supabase
-                    .from('orders')
-                    .update({ status: 'paid' })
-                    .eq('id', orderId);
-                 if(error) console.error("Error updating order status:", error);
+                 // Optionally update order status in Supabase to 'paid' if real backend exists
+                 if (typeof supabase.from('orders').update === 'function') {
+                     const { error } = await supabase
+                        .from('orders')
+                        .update({ status: 'paid' })
+                        .eq('id', orderId);
+                     if(error) console.error("Error updating order status:", error);
+                 }
                  
-                 // Trigger GA4 Purchase Event
+                 // Retrieve order from session to render receipt and trigger GA4
                  const lastOrderStr = sessionStorage.getItem('lastOrderGA4');
                  if (lastOrderStr) {
                      try {
-                         const { cartItems, cartTotal, transactionId } = JSON.parse(lastOrderStr);
-                         // Double check transaction ID matches or just trust it since it's the exact flow
-                         trackPurchase(transactionId || orderId, cartItems, cartTotal);
-                         sessionStorage.removeItem('lastOrderGA4'); // Clean up
+                         const orderData = JSON.parse(lastOrderStr);
+                         setOrderDetails(orderData); // Save to state to render it in UI
+
+                         // Trigger GA4 Purchase Event
+                         trackPurchase(orderData.cartItems, orderData.cartTotal, orderData.transactionId || orderId);
+                         
+                         // Clean up so refresh doesn't trigger GA4 twice!
+                         sessionStorage.removeItem('lastOrderGA4'); 
                      } catch(e) {
                          console.error("Error formatting GA4 purchase:", e);
                      }
                  }
              }
-             setIsVerifying(false);
+             
+             // Simulate small verification delay for UI smoothness
+             setTimeout(() => setIsVerifying(false), 800);
         };
 
         verifyPayment();
@@ -62,7 +71,12 @@ const Success = () => {
             <CheckCircle size={64} color="#28a745" style={{ marginBottom: '1.5rem' }} />
             <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>¡Gracias por tu compra!</h1>
             <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '500px', margin: '0 auto 2rem' }}>
-                Tu pago ha sido {paymentStatus === 'approved' ? 'aprobado' : 'procesado'} y tu pedido ha sido confirmado. Hemos enviado un correo con los detalles de tu compra.
+                Tu pago ha sido {paymentStatus === 'approved' ? 'aprobado' : 'procesado'} y tu pedido ha sido confirmado.
+                {orderDetails?.customer?.email && (
+                    <span style={{ display: 'block', marginTop: '0.8rem', color: '#444' }}>
+                        Hemos enviado un comprobante a <strong>{orderDetails.customer.email}</strong> con todos los detalles de tu compra para tu seguridad.
+                    </span>
+                )}
                 {orderId && (
                     <span style={{ 
                         display: 'block', 
@@ -77,7 +91,56 @@ const Success = () => {
                     </span>
                 )}
             </p>
-            <Link to="/" className="btn btn-primary" style={{ borderRadius: '30px' }}>Volver al Inicio</Link>
+
+            {orderDetails && orderDetails.cartItems && (
+                <div className="order-receipt-container" style={{ width: '100%', maxWidth: '600px', textAlign: 'left', marginBottom: '2rem' }}>
+                    {/* Items Section */}
+                    <div className="order-receipt" style={{ background: '#fff', padding: '2.5rem', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', marginBottom: '1.5rem' }}>
+                        <h2 style={{ fontSize: '1.4rem', paddingBottom: '1rem', borderBottom: '1px solid #eee', marginBottom: '1.5rem' }}>Productos adquiridos</h2>
+                        {orderDetails.cartItems.map((item, i) => (
+                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.2rem', alignItems: 'center' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                    <img src={item.image} alt={item.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }}/>
+                                    <div>
+                                        <div style={{ fontWeight: '600', color: '#111' }}>{item.title}</div>
+                                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '4px' }}>Talla: {item.size} | Cant.: {item.quantity}</div>
+                                    </div>
+                                </div>
+                                <div style={{ fontWeight: '700', color: '#111' }}>
+                                    ${(parseInt(String(item.price).replace(/\./g, '')) * item.quantity).toLocaleString('es-CL')}
+                                </div>
+                            </div>
+                        ))}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingTop: '1.5rem', borderTop: '2px dashed #eee', fontWeight: '800', fontSize: '1.2rem' }}>
+                            <span>Total Pagado</span>
+                            <span style={{ color: '#000' }}>${(orderDetails.cartTotal).toLocaleString('es-CL')}</span>
+                        </div>
+                    </div>
+
+                    {/* Customer Info Section */}
+                    {orderDetails.customer && (
+                        <div className="shipping-info" style={{ background: '#f8f9fa', padding: '1.5rem 2rem', border: '1px solid #eee', borderRadius: '12px' }}>
+                            <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: '#333' }}>Información de Envío</h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.9rem', color: '#555' }}>
+                                <div>
+                                    <strong style={{ display: 'block', color: '#111', marginBottom: '0.2rem' }}>Cliente</strong>
+                                    {orderDetails.customer.firstName} {orderDetails.customer.lastName}
+                                </div>
+                                <div>
+                                    <strong style={{ display: 'block', color: '#111', marginBottom: '0.2rem' }}>Email</strong>
+                                    {orderDetails.customer.email}
+                                </div>
+                                <div style={{ gridColumn: '1 / -1' }}>
+                                    <strong style={{ display: 'block', color: '#111', marginBottom: '0.2rem' }}>Dirección de Despacho</strong>
+                                    {orderDetails.customer.address}, {orderDetails.customer.city}, Región {orderDetails.customer.region}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            <Link to="/" className="btn btn-primary" style={{ borderRadius: '30px', padding: '1rem 3rem' }}>Volver a la Tienda</Link>
         </div>
     );
 };

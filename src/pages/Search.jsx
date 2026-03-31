@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { useProducts } from '../hooks/useProducts';
 import { PageMeta } from '../hooks/usePageMeta';
-import { trackViewItemList } from '../utils/analytics';
+import { trackViewItemList } from '../utils/ecommerceTracker';
 import './Category.css'; // Re-use category grid styles
 
 const Search = () => {
@@ -37,7 +37,7 @@ const Search = () => {
 
             <section className="container cat-body">
                 <div className="cat-products" style={{ width: '100%' }}> {/* Full width, no sidebar */}
-                    <h2 style={{ marginBottom: '2rem', fontSize: '1.5rem' }}>Resultados para: "{query}"</h2>
+                    <h2 style={{ marginBottom: '2rem', fontSize: '1.5rem' }}>Resultados para: &quot;{query}&quot;</h2>
 
                     {loading ? (
                         <div style={{ padding: '3rem 0', textAlign: 'center' }}>Cargando...</div>

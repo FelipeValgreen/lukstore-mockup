@@ -181,6 +181,12 @@
     margin-top: 6rem; /* Extra top margin so "Nuevos Ingresos" text breathes more */
 }
 
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
 /* 4. SUMMER SALE BANNER */
 .banner-sale {
     position: relative;
@@ -215,6 +221,7 @@
     color: #fff;
     background: linear-gradient(to right, #fff, #999);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -245,7 +252,6 @@
     box-shadow: 0 10px 30px rgba(255,255,255,0.1);
 }
 
-/* RESPONSIVE HERO & CATEGORIES & BANNERS */
 @media (max-width: 1024px) {
     .categories-grid-5 {
         grid-template-columns: repeat(3, 1fr);
@@ -255,9 +261,18 @@
     .categories-grid-5>div:nth-child(5) {
         grid-column: span 1.5;
     }
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
     .hero-original {
         height: auto;
         padding: 4rem 1.5rem;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
+import { trackSelectItem } from '../utils/ecommerceTracker';
 
 const ProductCard = ({ id, image, title, price, category, condition, discount, originalPrice, isDrop, hierarchy, slug, sizes }) => {
     // The instruction implies that 'product' object is passed, and 'loading' state is managed.
@@ -21,8 +22,12 @@ const ProductCard = ({ id, image, title, price, category, condition, discount, o
         productUrl = `/${cat}/${brand}/${model}/${slug}`;
     }
 
+    const handleClick = () => {
+        trackSelectItem({ id, image, title, price, category, condition, discount, originalPrice, isDrop, hierarchy, slug, sizes }, "product_list", "Catálogo General/Recomendados");
+    };
+
     return (
-        <Link to={productUrl} className="product-card">
+        <Link to={productUrl} className="product-card" onClick={handleClick}>
             <div className={`product-image-container ${loading ? 'loading' : ''}`}>
                 <img src={image} alt={title} className="product-image" onLoad={() => setLoading(false)} />
                 <div className="card-badges">

@@ -3,9 +3,10 @@
 .header {
     background-color: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Added depth */
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000; /* Super high so it always overlaps popups inside content */
     height: var(--header-height);
     display: flex;
     align-items: center;
@@ -102,21 +103,24 @@
     border: none;
     cursor: pointer;
     color: var(--color-text);
+    padding: 0.5rem; /* Better touch target */
 }
 
 @media (max-width: 900px) {
     .nav-menu {
         display: none;
-        position: absolute;
-        top: 100%;
+        position: fixed; /* Fixed prevents scrolling issues and keeps it relative to window */
+        top: var(--header-height);
         left: 0;
         width: 100%;
+        height: calc(100vh - var(--header-height));
         background-color: var(--color-bg);
         flex-direction: column;
-        padding: 2rem;
-        border-bottom: 1px solid var(--color-border);
+        padding: 1.5rem 2rem;
         align-items: flex-start;
         z-index: 999;
+        overflow-y: auto;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .nav-menu.active {
@@ -124,21 +128,33 @@
         animation: fadeIn 0.3s ease;
     }
 
+    .nav-link {
+        font-size: 1.2rem; /* Larger for mobile typography */
+        font-weight: 700;
+        padding: 1rem 0;
+        width: 100%;
+        display: block; /* Takes full width for touch */
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
     .mobile-menu-btn {
         display: block;
     }
 
     .logo-img {
-        height: 30px;
+        height: 28px;
     }
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-5px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);

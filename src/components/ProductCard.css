@@ -204,3 +204,32 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     transform: translateY(-2px);
 }
+
+/* Responsive Product Card Updates */
+@media (max-width: 768px) {
+    .product-image {
+        padding: 1.5rem; /* Reduced padding so images don't look tiny in 2-col grids */
+    }
+    
+    .product-title {
+        font-size: 0.85rem;
+    }
+
+    .product-price {
+        font-size: 0.9rem;
+    }
+    
+    .product-price-original {
+        font-size: 0.75rem;
+    }
+
+    .btn-view-product {
+        padding: 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .badge {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.6rem;
+    }
+}

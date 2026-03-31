@@ -7,6 +7,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { PRODUCTS } from '../data/products';
 import { getClusterData } from '../data/clusters';
 import { getCategoryContent } from '../data/categoryContent';
+import { trackViewItemList } from '../utils/ecommerceTracker';
 import './ClusterPage.css';
 
 const ClusterPage = () => {
@@ -54,6 +55,14 @@ const ClusterPage = () => {
 
         return result;
     }, [category, brand, model, filters]);
+
+    // GA4 Tracking
+    useEffect(() => {
+        if (filteredProducts.length > 0) {
+            const listTitle = category?.toUpperCase() || 'CLUSTER';
+            trackViewItemList(filteredProducts, `cluster_${listTitle.toLowerCase()}`, `Cluster: ${listTitle}`);
+        }
+    }, [filteredProducts, category]);
 
     // Best Sellers (Top 4)
     const bestSellers = useMemo(() => filteredProducts.slice(0, 4), [filteredProducts]);

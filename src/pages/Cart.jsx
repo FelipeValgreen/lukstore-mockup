@@ -3,7 +3,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PageMeta } from '../hooks/usePageMeta';
 import { useCart } from '../context/CartContext';
-import { trackViewCart, trackRemoveFromCart, trackBeginCheckout } from '../utils/analytics';
+import { trackViewCart, trackRemoveFromCart, trackBeginCheckout } from '../utils/ecommerceTracker';
+import { Minus, Plus, Trash2, ArrowLeft } from 'lucide-react';
 import './Cart.css';
 
 const Cart = () => {
